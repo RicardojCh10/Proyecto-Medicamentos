@@ -66,7 +66,7 @@ function Registros() {
   }, [datos.autenticado, datos.email, datos.user]);
 
   if (datos.autenticado) {
-    navigate("/table");
+    navigate("/tabla");
     return null;
   }
 
@@ -89,7 +89,7 @@ function Registros() {
         <label>Contraseña:</label>
         <input
           type="password"
-          placeholder="Ingresa tu contraseña"
+          placeholder="Ingresa tu Nombre"
           value={datos.contrasena}
           onChange={(e) => {
             setDatos({ ...datos, contrasena: e.target.value });
