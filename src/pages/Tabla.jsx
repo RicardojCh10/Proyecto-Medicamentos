@@ -41,7 +41,8 @@ function Tabla() {
         <br></br>
         <div className="flex items-center justify-between mx-2">
           <h4 className="text-lg font-bold text-black">HOLA! BIENVENIDO</h4>
-          <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-red-400">
+          <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-red-400"
+          onClick={() => cerrarSesion()}>
             CERRAR SESIÓN
           </button>
         </div>

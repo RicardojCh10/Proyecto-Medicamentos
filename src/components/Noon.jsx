@@ -107,7 +107,7 @@ import noon from '../assets/noon.png'
         </td>
       </td>
 
-      <td className='bg-[#fbeaa7] w-80 border-r-2'>
+      <td className='bg-[#fbeaa7] w-60 h-fit border-r-2'>
             <h2 className='h-30'>{medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <h2 key={index}  className="w-30" >
@@ -119,7 +119,7 @@ import noon from '../assets/noon.png'
         )}
 </h2>      
       </td>
-      <td className=' bg-[#fae891] w-8 h-10 rounded-r-lg rounded-l-none'>
+      <td className=' bg-[#fae891] w-40 h-10 rounded-r-lg rounded-l-none'>
       {medicamentos ? (
             medicamentos.map((medicamento, index) => (
               <button className='w-full' onClick={() => handleDelete(medicamento.id)}>x</button>

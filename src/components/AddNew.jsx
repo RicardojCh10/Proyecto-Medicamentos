@@ -85,12 +85,12 @@ function AddNew({ abierto, setAbierto }) {
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="bg-gray-100 p-8">
-        <h2 className="text-3xl font-bold mb-4">Agregar medicamento</h2>
+        <h2 className="text-3xl font-bold mb-4">AGREGAR MEDICAMENTO</h2>
 
         <form className="max-w-md bg-white p-6 rounded-md shadow-md">
           <div className="mb-4">
-            <label className="block mb-2" htmlFor="nombre_medicamento">
-              Nombre del medicamento:
+            <label className="block mb-2 font-bold" htmlFor="nombre_medicamento">
+              MEDICAMENTO:
             </label>
             <select
               id="nombre_medicamento"
@@ -101,7 +101,7 @@ function AddNew({ abierto, setAbierto }) {
             >
               <option value="" disabled selected>
                 {" "}
-                Elija una opcion{" "}
+                SELECIONE UN MEDICAMENTO{" "}
               </option>
 
               {medicamentos ? (
@@ -117,14 +117,14 @@ function AddNew({ abierto, setAbierto }) {
           </div>
 
           <div className="mb-4">
-            <label className="block mb-2" htmlFor="dosis_medicamento">
-              Dosis de la medicina:
+            <label className="block mb-2 font-bold" htmlFor="dosis_medicamento">
+              DOSIS (1-10):
             </label>
             <input
               id="dosis_medicamento"
               className="w-full border rounded-md p-2"
               type="text"
-              placeholder="2 pastillas - 2 inyecciones"
+              placeholder=" # ORAL - # INYECCIÓN"
               name="dosis"
               value={formularioData.dosis}
               onChange={handleInputChange}
@@ -133,14 +133,14 @@ function AddNew({ abierto, setAbierto }) {
 
           <div className="flex mb-4">
             <div className="w-1/2 mr-2">
-              <label className="block mb-2" htmlFor="horas_tomada">
-                Horas entre cada tomada:
+              <label className="block mb-2 font-bold" htmlFor="horas_tomada">
+                HORA ENTRE DOSIS:
               </label>
               <input
                 id="horas_tomada"
                 className="w-full border rounded-md p-2"
                 type="number"
-                placeholder="8"
+                placeholder="NÚMERO DE HORAS"
                 min="0"
                 name="hora"
                 value={formularioData.hora}
@@ -148,14 +148,14 @@ function AddNew({ abierto, setAbierto }) {
               />
             </div>
             <div className="w-1/2 ml-2">
-              <label className="block mb-2" htmlFor="dias_prescripcion">
-                Dias de la prescripcion:
+              <label className="block mb-2 font-bold" htmlFor="dias_prescripcion">
+                DURACIÓN (DÍA):
               </label>
               <input
                 id="dias_prescripcion"
                 className="w-full border rounded-md p-2"
                 type="number"
-                placeholder="5"
+                placeholder="NÚMERO DE DÍAS"
                 min="0"
                 name="dias"
                 value={formularioData.dias}
@@ -165,14 +165,14 @@ function AddNew({ abierto, setAbierto }) {
           </div>
 
           <div className="mb-4">
-            <label className="block mb-2" htmlFor="comentarios_medicamento">
-              Comentarios / Anotaciones:
+            <label className="block mb-2 font-bold" htmlFor="comentarios_medicamento">
+              COMENTARIOS:
             </label>
             <textarea
               id="comentarios_medicamento"
               className="w-full border rounded-md p-2"
               type="text"
-              placeholder="Tomar antes de..."
+              placeholder="INGRESA UN COMENTARIO"
               name="comentarios"
               value={formularioData.comentarios}
               onChange={handleInputChange}
@@ -181,7 +181,7 @@ function AddNew({ abierto, setAbierto }) {
 
           <div className="mb-4">
             <label className="block mb-2">
-              ¿Es este medicamento de toma solo cuando sea necesario?
+              ¿EL MEDICAMENTO SOLO SE TOMA CUANDO ES NECESARIO?
             </label>
             <input
               className="mr-2"
@@ -194,10 +194,10 @@ function AddNew({ abierto, setAbierto }) {
 
           <div>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded items-center"
               onClick={handleSubmit}
             >
-              Agregar
+              AGREGAR
             </button>
           </div>
         </form>

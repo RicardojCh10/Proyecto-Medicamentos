@@ -113,7 +113,7 @@ function Evening() {
         </td>
       </td>
       {/*Comentarios*/}
-      <td className="bg-[#a6f2e8]  w-80 h-fit border-r-2">
+      <td className="bg-[#a6f2e8]  w-60 h-fit border-r-2">
         <h2 className="h-30">
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
@@ -126,7 +126,7 @@ function Evening() {
           )}
         </h2>
       </td>
-      <td className=" bg-[#8BDFD8] w-8 h-10 rounded-r-lg rounded-l-none">
+      <td className=" bg-[#8BDFD8] w-40 h-10 rounded-r-lg rounded-l-none">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <button

@@ -112,7 +112,7 @@ function Morning() {
         </td>
       </td>
       {/*Comentarios*/}
-      <td className="bg-[#fcd8d9] w-80 h-fit border-r-2">
+      <td className="bg-[#fcd8d9] w-60 h-fit border-r-2">
         <h2 className="h-30">
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
@@ -131,7 +131,7 @@ function Morning() {
           )}
         </h2>
       </td>
-      <td className=" bg-[#fabdbc] w-8 h-10 rounded-r-lg rounded-l-none">
+      <td className=" bg-[#fabdbc] w-40 h-10 rounded-r-lg rounded-l-none">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <button
