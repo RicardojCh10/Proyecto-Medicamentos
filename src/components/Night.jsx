@@ -35,11 +35,11 @@ function Night() {
   return (
     <>
       {/*Nombre*/}
-      <th className="bg-[#002790] w-40 h-fit border-r-2 font-semibold">
-        Noche
-        <img className="w-8 h-8 mb-auto mx-auto" src={night}></img>
+      <th className="bg-[#6a8cba] w-40 h-25  rounded-l-lg rounded-r-none font-semibold">
+        NIGHT
+        <img className="items-center justify-center mx-auto mb-auto w-20 h-20" src={night}></img>
       </th>
-      <td className="bg-[#2972b6]  w-40 border-r-2">
+      <td className="bg-[#aac3df]  w-40 border-r-2">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <h2 className="h-15">{medicamento.nombre}</h2>
@@ -49,7 +49,7 @@ function Night() {
         )}
       </td>
       {/*Dosis*/}
-      <td className="bg-[#2972b6]  w-40  border-r-2 text-center">
+      <td className="bg-[#6a8cba]  w-40  border-r-2 text-center">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <h2 key={index} className="h-15">
@@ -63,7 +63,7 @@ function Night() {
 
       {/* Inicio hora */}
 
-      <td className=" bg-[#2972b6]  border-r-2 w-40 h-fit text-center">
+      <td className=" bg-[#aac3df]  border-r-2 w-40 h-fit text-center">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => {
             const currentTime = new Date();
@@ -102,8 +102,8 @@ function Night() {
       {/* Finalhora */}
 
       {/*Tiempo - ultima_hora*/}
-      <td className="bg-[#2972b6] w-40 h-24 border-r-2 text-center">
-        <td className="bg-[#2972b6]  w-40 h-fit ">
+      <td className="bg-[#6a8cba] w-40 h-24 border-r-2 text-center">
+        <td className="bg-[#6a8cba]  w-40 h-fit ">
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
               <h2 key={index} className="h-15">
@@ -116,7 +116,7 @@ function Night() {
         </td>
       </td>
       {/*Comentarios*/}
-      <td className="bg-[#2972b6] w-80 h-fit border-r-2">
+      <td className="bg-[#aac3df] w-80 h-fit border-r-2">
         <h2 className="h-30 ">
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
@@ -129,11 +129,11 @@ function Night() {
           )}
         </h2>
       </td>
-      <td className=" bg-[#2972b6] w-8 h-fit border-r-2">
+      <td className=" bg-[#6a8cba] w-8 h-10 rounded-r-lg rounded-l-none">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <button
-              className="w-full"
+              className="w-full "
               onClick={() => handleDelete(medicamento.id)}
             >
               x

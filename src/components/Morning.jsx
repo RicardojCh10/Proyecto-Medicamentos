@@ -36,11 +36,11 @@ function Morning() {
   return (
     <>
       {/*Nombre*/}
-      <th className="bg-[#FF9688] w-40 h-fit border-r-2 font-semibold">
+      <th className="bg-[#fabdbc] w-40 h-25  rounded-l-lg rounded-r-none font-semibold">
         MORNING
-        <img className="w-10 h-10 mb-auto mx-auto" src={morning} />
+        <img className="items-center justify-center mx-auto mb-auto w-20 h-20 " src={morning} />
       </th>
-      <td className="bg-[#FF9688] w-40 h-fit border-r-2 ">
+      <td className="bg-[#fcd8d9]  w-40 h-fit border-r-2">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <h2 key={medicamento.id_medicamento}>{medicamento.nombre_medicamento}</h2>
@@ -50,7 +50,7 @@ function Morning() {
         )}
       </td>
       {/*Dosis*/}
-      <td className="bg-[#FF9688] w-40 h-fit border-r-2 text-center">
+      <td className="bg-[#fabdbc] w-40 h-fit border-r-2 text-center">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <h2 key={medicamento.id_medicamento}>{medicamento.dosis}</h2>
@@ -62,7 +62,7 @@ function Morning() {
 
       {/* Inicio hora */}
 
-      <td className="bg-[#FF9688] border-r-2 w-40 h-fit text-center">
+      <td className="bg-[#fcd8d9] border-r-2 w-40 h-fit text-center">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => {
             const currentTime = new Date();
@@ -100,8 +100,8 @@ function Morning() {
 
       {/* Finalhora */}
 
-      <td className="bg-[#FF9688] w-40 h-24 border-r-2  text-center">
-        <td className="bg-[#FF9688]  w-40 h-fit ">
+      <td className="bg-[#fabdbc] w-40 h-24 border-r-2  text-center">
+        <td className="bg-[#fabdbc]  w-40 h-fit ">
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
               <h2 key={medicamento.id}>{medicamento.fecha}</h2>
@@ -112,7 +112,7 @@ function Morning() {
         </td>
       </td>
       {/*Comentarios*/}
-      <td className="bg-[#FF9688] w-80 h-fit border-r-2">
+      <td className="bg-[#fcd8d9] w-80 h-fit border-r-2">
         <h2 className="h-30">
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
@@ -131,7 +131,7 @@ function Morning() {
           )}
         </h2>
       </td>
-      <td className=" bg-[#FF9688] w-8 h-fit border-r-2">
+      <td className=" bg-[#fabdbc] w-8 h-10 rounded-r-lg rounded-l-none">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <button
@@ -141,7 +141,7 @@ function Morning() {
               }}
               onClick={() => handleDelete(medicamento.id_medicamento)}
             >
-              x
+              Tomado
             </button>
           ))
         ) : (

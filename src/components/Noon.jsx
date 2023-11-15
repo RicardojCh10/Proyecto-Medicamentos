@@ -35,9 +35,9 @@ import noon from '../assets/noon.png'
   return (
     <> 
                                               {/*Tiempo - hora programada*/}
-      <th className='bg-[#F8DA45] w-40 h-24 border-r-2  font-semibold'>Mediodia
-      <img className='items-center justify-center mx-auto mb-auto w-10 h-10 ' src={noon}></img></th>
-      <td className='bg-[#FFFF71]  w-40 h-fit border-r-2'>
+      <th className='bg-[#fae891] w-40 h-25  rounded-l-lg rounded-r-none font-semibold'>NOON
+      <img className='items-center justify-center mx-auto mb-auto w-20 h-20 ' src={noon}></img></th>
+      <td className='bg-[#fbeaa7]  w-40 h-fit border-r-2'>
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <h2  >
@@ -49,7 +49,7 @@ import noon from '../assets/noon.png'
         )}
       </td>
                                                 {/*Dosis*/}
-      <td className='bg-[#FFFF71]  w-40 h-fit border-r-2 text-center'>
+      <td className='bg-[#fae891]  w-40 h-fit border-r-2 text-center'>
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <h2 key={index}  >
@@ -63,7 +63,7 @@ import noon from '../assets/noon.png'
 
             {/* Inicio hora */}
 
-      <td className='bg-[#FFFF71] border-r-2 w-40 h-fit text-center'>
+      <td className='bg-[#fbeaa7] border-r-2 w-40 h-fit text-center'>
   {medicamentos ? (
     medicamentos.map((medicamento, index) => {
       const currentTime = new Date();
@@ -93,8 +93,8 @@ import noon from '../assets/noon.png'
 {/* Finalhora */}
 
 
-      <td className='bg-[#FFFF71] w-40 h-fit border-r-2 text-center'>
-        <td className='bg-[#FFFF71]  w-40 h-fit'>
+      <td className='bg-[#fae891] w-40 h-fit border-r-2 text-center'>
+        <td className='bg-[#fae891] w-40 h-fit'>
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
               <h2 key={index} >
@@ -107,7 +107,7 @@ import noon from '../assets/noon.png'
         </td>
       </td>
 
-      <td className='bg-[#FFFF71] w-80 border-r-2'>
+      <td className='bg-[#fbeaa7] w-80 border-r-2'>
             <h2 className='h-30'>{medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <h2 key={index}  className="w-30" >
@@ -119,7 +119,7 @@ import noon from '../assets/noon.png'
         )}
 </h2>      
       </td>
-      <td className=' bg-[#FFFF71] w-8 h-fit border-r-2'>
+      <td className=' bg-[#fae891] w-8 h-10 rounded-r-lg rounded-l-none'>
       {medicamentos ? (
             medicamentos.map((medicamento, index) => (
               <button className='w-full' onClick={() => handleDelete(medicamento.id)}>x</button>
