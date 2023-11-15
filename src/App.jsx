@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // RUTAS
-import Login from "./routes/Login";
+import Login from "./pages/Login";
 import Registros from "./pages/Registros";
 import Tabla from "./pages/Tabla";
 import "./index.css";

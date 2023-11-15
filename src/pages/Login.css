@@ -1,0 +1,74 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Estilos para el fondo y el contenedor */
+.login-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    background-color: #333333; /* Fondo #333333 */
+
+}
+
+.login-container {
+    width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los elementos del formulario */
+.form-label {
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-primary,
+.btn-registrarse {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: rgb(6, 89, 65);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold; /* Ambos en negrita */
+    font-size: 16px; /* Mismo tamaño de fuente */
+    text-align: center;
+    text-decoration: none; /* Quitado subrayado */
+}
+
+.btn-primary:hover {
+    background-color: #207adb;
+}
+
+.btn-registrarse:hover {
+    background-color: #31a84a; /* Cambiado el color en hover */
+}
+
+.btn-registrarse-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Espacio entre los elementos */
+}
+
+/* Estilos para el texto */
+.text-center {
+    text-align: center;
+    margin-top: 20px; /* Espacio arriba */
+    margin-bottom: 20px; /* Espacio abajo */
+}

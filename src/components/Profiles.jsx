@@ -3,7 +3,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function Perfiles({abierto, setAbierto}){
+function Profiles({abierto, setAbierto}){
 
   const [formularioData, setFormularioData] = useState(estadoInicial);
   const [resultado, setResultado] = useState('');
@@ -141,4 +141,4 @@ function Perfiles({abierto, setAbierto}){
   )
 }
 
-export default Perfiles
+export default Profiles;

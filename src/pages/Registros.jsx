@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./Registros.css"; // Asegúrate de que este sea el nombre correcto de tu archivo CSS
 
 function Registros() {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ function Registros() {
       })
       .catch((error) => {
         console.error("Error al iniciar sesión: " + error);
-        setError("email ya registrado.");
+        setError("Email ya registrado.");
       });
   };
 
@@ -71,59 +72,63 @@ function Registros() {
   }
 
   return (
-    <form onSubmit={handleRegister}>
-      <h2>Registrarse</h2>
-      <div>
-        <label>Nombre:</label>
-        <input
-          type="text"
-          placeholder="Ingresa tu Nombre"
-          value={datos.nombre}
-          onChange={(e) => {
-            setDatos({ ...datos, nombre: e.target.value });
-          }}
-        />
-      </div>
+    <div className="registro-background">
+    <div className="registro-container">
+      <form onSubmit={handleRegister}>
+        <h2>Registrarse</h2>
+        <div>
+          <label>Nombre:</label>
+          <input
+            type="text"
+            placeholder="Ingresa tu Nombre"
+            value={datos.nombre}
+            onChange={(e) => {
+              setDatos({ ...datos, nombre: e.target.value });
+            }}
+          />
+        </div>
 
-      <div>
-        <label>Contraseña:</label>
-        <input
-          type="password"
-          placeholder="Ingresa tu Nombre"
-          value={datos.contrasena}
-          onChange={(e) => {
-            setDatos({ ...datos, contrasena: e.target.value });
-          }}
-        />
-      </div>
+        <div>
+          <label>Contraseña:</label>
+          <input
+            type="password"
+            placeholder="Ingresa tu Contraseña"
+            value={datos.contrasena}
+            onChange={(e) => {
+              setDatos({ ...datos, contrasena: e.target.value });
+            }}
+          />
+        </div>
 
-      <div>
-        <label>Confirmar Contraseña:</label>
-        <input
-          type="password"
-          placeholder="Ingresa tu contraseña"
-          value={datos.contrasenaConfirm}
-          onChange={(e) => {
-            setDatos({ ...datos, contrasenaConfirm: e.target.value });
-          }}
-        />
-      </div>
+        <div>
+          <label>Confirmar Contraseña:</label>
+          <input
+            type="password"
+            placeholder="Confirma tu Contraseña"
+            value={datos.contrasenaConfirm}
+            onChange={(e) => {
+              setDatos({ ...datos, contrasenaConfirm: e.target.value });
+            }}
+          />
+        </div>
 
-      <div>
-        <label>email:</label>
-        <input
-          type="email"
-          placeholder="ejemplo@gmail.com"
-          value={datos.email}
-          onChange={(e) => {
-            setDatos({ ...datos, email: e.target.value });
-          }}
-        />
-      </div>
+        <div>
+          <label>Email:</label>
+          <input
+            type="email"
+            placeholder="ejemplo@gmail.com"
+            value={datos.email}
+            onChange={(e) => {
+              setDatos({ ...datos, email: e.target.value });
+            }}
+          />
+        </div>
 
-      <button type="submit">Registrarse</button>
-      {error && <div>{error}</div>}
-    </form>
+        <button type="submit">Registrarse</button>
+        {error && <div className="error">{error}</div>}
+      </form>
+    </div>
+    </div>
   );
 }
 

@@ -3,7 +3,7 @@ import axios from "axios";
 
 import { useContexto } from "../context/MainContext";
 
-function Agregar({ abierto, setAbierto }) {
+function AddNew({ abierto, setAbierto }) {
   const estadoInicial = {
     nombre: "",
     dosis: "",
@@ -56,33 +56,31 @@ function Agregar({ abierto, setAbierto }) {
   };
 
   const handleSubmit = () => {
-    const comentarios =
-      formularioData.comentarios.trim() === ""
-        ? "Sin comentarios"
-        : formularioData.comentarios;
-
+    const comentarios = formularioData.comentarios.trim() === "" ? "Sin comentarios" : formularioData.comentarios;
+  
     const formDataFinal = {
-      ...formularioData,
-      comentarios,
+      nombre_medicamento: formularioData.nombre,
+      dosis: formularioData.dosis,
+      momento_dia: "Mañana", // Esta sería la lógica para definir el momento del día, podría ser dinámico.
+      Si_es_necesario: formularioData.Si_es_necesario,
+      veces_a_tomar: 3, // Cantidad de veces a tomar, podrías obtenerla de formularioData.dias o algo similar
+      horaVeces_a_tomar: formularioData.hora, // Asegúrate de que corresponda al nombre correcto
+      comentarios: comentarios,
     };
-
+  
     axios
-      .post("http://localhost:8082/api/agregar", formDataFinal, {
-        params: {
-          user: localStorage.getItem("user"),
-        },
-      })
+      .post("http://localhost:8082/api/agregar", formDataFinal)
       .then((response) => {
         setResultado(response.data);
         setAbierto(false);
         setFormularioData(estadoInicial);
-
         setTriggerEffect((prev) => !prev);
       })
       .catch((error) => {
         setResultado("Error al enviar el formulario");
       });
   };
+  
 
   return (
     <div>
@@ -203,4 +201,4 @@ function Agregar({ abierto, setAbierto }) {
   );
 }
 
-export default Agregar;
+export default AddNew;

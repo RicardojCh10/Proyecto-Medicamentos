@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
-import Morning from "../components/Mañana";
-import MedioDia from "../components/MedioDia";
-import Tarde from "../components/Tarde";
-import Noche from "../components/Noche";
-import Necesario from "../components/Necesario";
-import Agregar from "../components/Agregar";
+import Morning from "../components/Morning";
+import Noon from "../components/Noon";
+import Evening from "../components/Evening";
+import Night from "../components/Night";
+import Necessary from "../components/Necessary";
+import AddNew from "../components/AddNew";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useContexto } from "../context/MainContext";
+import "./Tabla.css"; // Asegúrate de que este sea el nombre correcto de tu archivo CSS
+
 
 function Tabla() {
   const cerrarSesion = () => {
@@ -40,9 +42,15 @@ function Tabla() {
       <div>
         <div>
           <h2 className="w-full flex-col text-center text-3xl p-5">
-            MEDICAMENTOS
+            CUADRO DE MEDICAMENTOS
           </h2>
         </div>
+
+
+        <AddNew abierto={abierto} setAbierto={setAbierto} />
+
+        <br></br>
+        <br></br>
 
         <div className="bg-white rounded-sm w-[90%] mx-auto h-[40%] border-x-2 border-b-4 border-t flex items-center justify-center flex-wrap py-8">
           <div className="flex items-center justify-between w-full mx-10">
@@ -66,7 +74,7 @@ function Tabla() {
             <table className="my-0.5">
               <thead>
                 <tr className="items-center justify-center">
-                  <MedioDia />
+                  <Noon />
                 </tr>
               </thead>
             </table>
@@ -74,7 +82,7 @@ function Tabla() {
             <table className="my-0.5">
               <thead>
                 <tr>
-                  <Tarde />
+                  <Evening />
                 </tr>
               </thead>
             </table>
@@ -82,7 +90,7 @@ function Tabla() {
             <table className="my-0.5">
               <thead>
                 <tr className="items-center justify-center">
-                  <Noche />
+                  <Night />
                 </tr>
               </thead>
             </table>
@@ -90,15 +98,13 @@ function Tabla() {
             <table className="my-0.5 ">
               <thead>
                 <tr className="items-center justify-center ">
-                  <Necesario />
+                  <Necessary />
                 </tr>
               </thead>
             </table>
           </table>
         </div>
       </div>
-
-      <Agregar abierto={abierto} setAbierto={setAbierto} />
     </>
   );
 }

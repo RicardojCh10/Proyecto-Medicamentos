@@ -3,7 +3,7 @@ import axios from "axios";
 import { useContexto } from "../context/MainContext";
 import pastillas from "../assets/pastillas.png";
 
-function Necesario() {
+function Necessary() {
   const [medicamentos, setMedicamentos] = useState([]);
   const { handleDelete, triggerEffect } = useContexto();
 
@@ -106,4 +106,4 @@ function Necesario() {
   );
 }
 
-export default Necesario;
+export default Necessary;
