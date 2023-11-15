@@ -15,6 +15,12 @@ body {
 
 }
 
+h2 {
+    align-items: center;
+    text-align: center;
+}
+
+
 .login-container {
     width: 400px;
     padding: 20px;
@@ -37,11 +43,11 @@ body {
 }
 
 .btn-primary,
-.btn-registrarse {
+.btn-registrarse  {
     width: 100%;
     padding: 10px;
     margin-top: 10px;
-    background-color: rgb(6, 89, 65);
+    background-color: rgb(0, 0, 0);
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -51,6 +57,7 @@ body {
     text-align: center;
     text-decoration: none; /* Quitado subrayado */
 }
+
 
 .btn-primary:hover {
     background-color: #207adb;

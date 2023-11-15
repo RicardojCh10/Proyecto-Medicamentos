@@ -75,7 +75,7 @@ function Registros() {
     <div className="registro-background">
     <div className="registro-container">
       <form onSubmit={handleRegister}>
-        <h2>Registrarse</h2>
+        <h2 className="mb-4 text-2xl font-bold">Registrarse</h2>
         <div>
           <label>Nombre:</label>
           <input
@@ -113,7 +113,7 @@ function Registros() {
         </div>
 
         <div>
-          <label>Email:</label>
+          <label>Correo Electronico:</label>
           <input
             type="email"
             placeholder="ejemplo@gmail.com"

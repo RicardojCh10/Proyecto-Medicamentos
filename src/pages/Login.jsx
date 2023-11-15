@@ -70,10 +70,10 @@ function Login() {
     <div className="login-background">
       <div className="login-container">
         <form onSubmit={handleLogin}>
-          <h2 className="mb-4">Iniciar sesión</h2>
+          <h2 className="mb-4 text-2xl font-bold">Iniciar sesión para usuarios existentes</h2>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
-              email:
+              Correo Electrónico:
             </label>
             <input
               type="email"
@@ -93,7 +93,7 @@ function Login() {
             <input
               type={showPassword ? "text" : "password"}
               className="form-control"
-              placeholder="**"
+              placeholder="Ingresa tu contraseña"
               name="contrasena"
               value={datos.contrasena}
               onChange={(e) => {
@@ -116,7 +116,7 @@ function Login() {
               </small>
             )}
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary bg-black">
             Iniciar sesión
           </button>
           {error && <div className="alert alert-danger mt-3">{error}</div>}
