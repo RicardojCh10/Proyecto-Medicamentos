@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import Manana from "../components/Mañana";
+import Morning from "../components/Mañana";
 import MedioDia from "../components/MedioDia";
 import Tarde from "../components/Tarde";
 import Noche from "../components/Noche";
@@ -50,16 +50,15 @@ function Tabla() {
               className="text-black border-red-600 border-2 transition-all duration-300 ease-in-out hover:bg-red-700 focus:ring focus:outline-none focus:ring-red-300 m-3 px-2 border border-red-600 rounded-sm w-32"
               onClick={() => cerrarSesion()}
             >
-              Cerrar Sesión
+              CERRAR SESIÓN
             </button>
-            <button></button>
           </div>
 
           <table className="h-80">
             <table className="my-0.5">
               <thead>
                 <tr className="items-center justify-center ">
-                  <Manana />
+                  <Morning />
                 </tr>
               </thead>
             </table>

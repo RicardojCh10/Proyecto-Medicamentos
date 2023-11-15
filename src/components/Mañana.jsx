@@ -3,7 +3,7 @@ import axios from "axios";
 import { useContexto } from "../context/MainContext";
 import morning from "../assets/morning .png";
 
-function Mañana() {
+function Morning() {
   const [medicamentos, setMedicamentos] = useState([]);
   const { handleDelete, handleTime, triggerEffect } = useContexto();
 
@@ -12,7 +12,7 @@ function Mañana() {
       try {
         const user = localStorage.getItem("user");
         const response = await axios.get(
-          "http://localhost:8082/medicamentosManana",
+          "http://localhost:8082/medicamentosMorning",
           {
             params: { user },
           }
@@ -37,26 +37,26 @@ function Mañana() {
     <>
       {/*Nombre*/}
       <th className="bg-[#FF9688] w-40 h-fit border-r-2 font-semibold">
-        Mañana
+        MORNING
         <img className="w-10 h-10 mb-auto mx-auto" src={morning} />
       </th>
       <td className="bg-[#FF9688] w-40 h-fit border-r-2 ">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
-            <h2 key={medicamento.id}>{medicamento.nombre}</h2>
+            <h2 key={medicamento.id_medicamento}>{medicamento.nombre_medicamento}</h2>
           ))
         ) : (
-          <p>Loading...</p>
+          <p>CARGANDO...</p>
         )}
       </td>
       {/*Dosis*/}
       <td className="bg-[#FF9688] w-40 h-fit border-r-2 text-center">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
-            <h2 key={medicamento.id}>{medicamento.dosis}</h2>
+            <h2 key={medicamento.id_medicamento}>{medicamento.dosis}</h2>
           ))
         ) : (
-          <p>Loading...</p>
+          <p>CARGANDO...</p>
         )}
       </td>
 
@@ -73,7 +73,7 @@ function Mañana() {
             const currentDay = currentTime.getDate();
 
             const horaProgramada = new Date(
-              `${currentYear}-${currentMonth}-${currentDay} ${medicamento.hora_programada}`
+              `${currentYear}-${currentMonth}-${currentDay} ${medicamento.hora}`
             );
 
             // Check if the current time is greater than the scheduled time
@@ -81,11 +81,11 @@ function Mañana() {
 
             return (
               <h2 key={index} className="h-15">
-                {medicamento.hora_programada}
+                {medicamento.hora}
                 {showButton && (
                   <button
                     className="ml-2"
-                    onClick={() => handleTime(medicamento.id)}
+                    onClick={() => handleTime(medicamento.id_medicamento)}
                   >
                     <span className="text-2xl">+</span>
                   </button>
@@ -94,7 +94,7 @@ function Mañana() {
             );
           })
         ) : (
-          <p>Loading...</p>
+          <p>CARGANDO...</p>
         )}
       </td>
 
@@ -104,10 +104,10 @@ function Mañana() {
         <td className="bg-[#FF9688]  w-40 h-fit ">
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
-              <h2 key={medicamento.id}>{medicamento.fecha_programada}</h2>
+              <h2 key={medicamento.id}>{medicamento.fecha}</h2>
             ))
           ) : (
-            <p>Loading...</p>
+            <p>CARGANDO...</p>
           )}
         </td>
       </td>
@@ -117,7 +117,7 @@ function Mañana() {
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
               <h2
-                key={medicamento.id}
+                key={medicamento.id_medicamento}
                 className="w-30"
                 style={{
                   backgroundColor: index % 2 === 0 ? "#FF9688" : "#FFBAC7",
@@ -127,7 +127,7 @@ function Mañana() {
               </h2>
             ))
           ) : (
-            <p>Loading...</p>
+            <p>CARGANDO...</p>
           )}
         </h2>
       </td>
@@ -139,17 +139,17 @@ function Mañana() {
               style={{
                 backgroundColor: index % 2 === 0 ? "#FF9688" : "#FFBAC7",
               }}
-              onClick={() => handleDelete(medicamento.id)}
+              onClick={() => handleDelete(medicamento.id_medicamento)}
             >
               x
             </button>
           ))
         ) : (
-          <p>Loading...</p>
+          <p>CARGANDO...</p>
         )}
       </td>
     </>
   );
 }
 
-export default Mañana;
+export default Morning;

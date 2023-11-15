@@ -56,7 +56,7 @@ app.get('/listaMedicamentos', (req, respuesta) => {
     });
 });
 
-app.get("/medicamentosManana", (req, respuesta) => {
+app.get("/medicamentosMorning", (req, respuesta) => {
     const user = req.query.user;
     const sql = "SELECT * FROM Medicamentos WHERE momento_dia = 'Mañana' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
     const values = [user];
