@@ -18,7 +18,6 @@ function AddNew({ abierto, setAbierto }) {
 
   const [medicamentos, setMedicamentos] = useState([]);
 
-  // Luego, puedes usar useEffect para cargar la lista de medicamentos cuando el componente se monte
   useEffect(() => {
     const fetchMedicamentos = async () => {
       try {
@@ -41,7 +40,6 @@ function AddNew({ abierto, setAbierto }) {
   const handleInputChange = (event) => {
     const { name, value, type } = event.target;
 
-    // Si el campo es un campo de entrada de tipo "checkbox", manejamos su estado de manera diferente
     if (type === "checkbox") {
       setFormularioData({
         ...formularioData,
@@ -56,18 +54,21 @@ function AddNew({ abierto, setAbierto }) {
   };
 
   const handleSubmit = () => {
-    const comentarios = formularioData.comentarios.trim() === "" ? "Sin comentarios" : formularioData.comentarios;
-  
+    const comentarios =
+      formularioData.comentarios.trim() === ""
+        ? "Sin comentarios"
+        : formularioData.comentarios;
+
     const formDataFinal = {
       nombre_medicamento: formularioData.nombre,
       dosis: formularioData.dosis,
-      momento_dia: "Mañana", // Esta sería la lógica para definir el momento del día, podría ser dinámico.
+      momento_dia: "Mañana",
       Si_es_necesario: formularioData.Si_es_necesario,
-      veces_a_tomar: 3, // Cantidad de veces a tomar, podrías obtenerla de formularioData.dias o algo similar
-      horaVeces_a_tomar: formularioData.hora, // Asegúrate de que corresponda al nombre correcto
+      veces_a_tomar: 3,
+      horaVeces_a_tomar: formularioData.hora,
       comentarios: comentarios,
     };
-  
+
     axios
       .post("http://localhost:8082/api/agregar", formDataFinal)
       .then((response) => {
@@ -80,67 +81,64 @@ function AddNew({ abierto, setAbierto }) {
         setResultado("Error al enviar el formulario");
       });
   };
-  
 
   return (
-    <div>
-      <div className="bg-white p-5 rounded flex flex-col justify-center items-center gap-5 h-2/2 w-3/2 relative">
-        <p className="w-80 text-center text-2xl ">Agregar medicamento</p>
+    <div className="flex items-center justify-center h-screen">
+      <div className="bg-gray-100 p-8">
+        <h2 className="text-3xl font-bold mb-4">Agregar medicamento</h2>
 
-        <div className="flex flex-col items-center justify-center w-full">
-          <label className="text-md w-[60%] p-0.5">
-            Nombre del medicamento:
-          </label>
+        <form className="max-w-md bg-white p-6 rounded-md shadow-md">
+          <div className="mb-4">
+            <label className="block mb-2" htmlFor="nombre_medicamento">
+              Nombre del medicamento:
+            </label>
+            <select
+              id="nombre_medicamento"
+              className="w-full border rounded-md p-2"
+              value={formularioData.nombre}
+              onChange={handleInputChange}
+              name="nombre"
+            >
+              <option value="" disabled selected>
+                {" "}
+                Elija una opcion{" "}
+              </option>
 
-          {/* Inicio del select */}
+              {medicamentos ? (
+                medicamentos.map((medicamento, index) => (
+                  <option key={index} value={medicamento.nombre}>
+                    {medicamento.nombre}
+                  </option>
+                ))
+              ) : (
+                <p>Loading...</p>
+              )}
+            </select>
+          </div>
 
-          <select
-            className="border text-center w-[60%] border-black rounded-sm px-2 py-1 custom-select"
-            value={formularioData.nombre}
-            onChange={handleInputChange}
-            name="nombre"
-          >
-            <option value="" disabled selected>
-              {" "}
-              Elija una opcion{" "}
-            </option>
+          <div className="mb-4">
+            <label className="block mb-2" htmlFor="dosis_medicamento">
+              Dosis de la medicina:
+            </label>
+            <input
+              id="dosis_medicamento"
+              className="w-full border rounded-md p-2"
+              type="text"
+              placeholder="2 pastillas - 2 inyecciones"
+              name="dosis"
+              value={formularioData.dosis}
+              onChange={handleInputChange}
+            />
+          </div>
 
-            {medicamentos ? (
-              medicamentos.map((medicamento, index) => (
-                <option key={index} value={medicamento.nombre}>
-                  {medicamento.nombre}
-                </option>
-              ))
-            ) : (
-              <p>Loading...</p>
-            )}
-          </select>
-
-          {/* Final del select */}
-        </div>
-
-        <div className="flex flex-col items-center justify-center w-full">
-          <label className="text-md w-[60%] p-0.5">Dosis de la medicina:</label>
-          <input
-            className="border-black border rounded-sm px-2 py-[.5%] w-[60%] "
-            type="text"
-            placeholder="2 pastillas - 2 inyecciones"
-            name="dosis"
-            value={formularioData.dosis}
-            onChange={handleInputChange}
-          />
-        </div>
-
-        <div className="flex flex-col items-center justify-center w-full">
-          <div className="flex"></div>
-
-          <div className="flex w-full justify-center gap-8 ">
-            <div className="flex flex-col items-center justify-center w-[32%]">
-              <label className="text-md w-[100%] ">
+          <div className="flex mb-4">
+            <div className="w-1/2 mr-2">
+              <label className="block mb-2" htmlFor="horas_tomada">
                 Horas entre cada tomada:
               </label>
               <input
-                className="border-black border rounded-sm px-2 py-[.5%] w-[100%] "
+                id="horas_tomada"
+                className="w-full border rounded-md p-2"
                 type="number"
                 placeholder="8"
                 min="0"
@@ -149,12 +147,13 @@ function AddNew({ abierto, setAbierto }) {
                 onChange={handleInputChange}
               />
             </div>
-            <div className="flex flex-col items-center  justify-center w-[26%]">
-              <label className="text-md w-[100%] p-0.5">
+            <div className="w-1/2 ml-2">
+              <label className="block mb-2" htmlFor="dias_prescripcion">
                 Dias de la prescripcion:
               </label>
               <input
-                className="border-black border rounded-sm px-2 py-[.5%] w-[100%] "
+                id="dias_prescripcion"
+                className="w-full border rounded-md p-2"
                 type="number"
                 placeholder="5"
                 min="0"
@@ -164,12 +163,14 @@ function AddNew({ abierto, setAbierto }) {
               />
             </div>
           </div>
-          <div className="flex flex-col items-center justify-center w-[60%] ">
-            <label className="text-md w-[100%] p-0.5">
+
+          <div className="mb-4">
+            <label className="block mb-2" htmlFor="comentarios_medicamento">
               Comentarios / Anotaciones:
             </label>
             <textarea
-              className="border-black border rounded-sm px-2 py-[.5%] w-[100%]"
+              id="comentarios_medicamento"
+              className="w-full border rounded-md p-2"
               type="text"
               placeholder="Tomar antes de..."
               name="comentarios"
@@ -177,25 +178,29 @@ function AddNew({ abierto, setAbierto }) {
               onChange={handleInputChange}
             />
           </div>
-        </div>
-        <h5>
-          ¿Es este medicamento de toma solo cuando sea necesario?
-          <input
-            className="ml-2"
-            type="checkbox"
-            name="Si_es_necesario"
-            value={formularioData.Si_es_necesario}
-            onChange={handleInputChange}
-          ></input>
-        </h5>
-        <div className="w-3/4 flex justify-center">
-          <button
-            className="text-white bg-black  m-5 py-2 px-4  border border-slate-500 rounded-md w-6/12"
-            onClick={handleSubmit}
-          >
-            Agregar
-          </button>
-        </div>
+
+          <div className="mb-4">
+            <label className="block mb-2">
+              ¿Es este medicamento de toma solo cuando sea necesario?
+            </label>
+            <input
+              className="mr-2"
+              type="checkbox"
+              name="Si_es_necesario"
+              checked={formularioData.Si_es_necesario}
+              onChange={handleInputChange}
+            />
+          </div>
+
+          <div>
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={handleSubmit}
+            >
+              Agregar
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
