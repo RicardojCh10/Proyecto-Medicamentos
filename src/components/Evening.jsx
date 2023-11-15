@@ -35,11 +35,11 @@ function Evening() {
   return (
     <>
       {/*Nombre*/}
-      <th className="bg-[#5DC1B9] w-40 h-24 border-r-2   font-semibold">
-        Tarde
-        <img className="w-10 h-10 mb-auto mx-auto" src={evening}></img>
+      <th className="bg-[#59bcb8] w-40 h-25  rounded-l-lg rounded-r-none font-semibold">
+        EVENING
+        <img className="items-center justify-center mx-auto mb-auto w-20 h-20" src={evening}></img>
       </th>
-      <td className="bg-[#8BDFD8]  w-40 h-fit border-r-2">
+      <td className="bg-[#a6f2e8]  w-40 h-fit border-r-2">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <h2>{medicamento.nombre}</h2>
@@ -62,7 +62,7 @@ function Evening() {
 
       {/* Inicio hora */}
 
-      <td className="bg-[#8BDFD8] border-r-2 w-40 h-fit text-center">
+      <td className="bg-[#a6f2e8] border-r-2 w-40 h-fit text-center">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => {
             const currentTime = new Date();
@@ -113,7 +113,7 @@ function Evening() {
         </td>
       </td>
       {/*Comentarios*/}
-      <td className="bg-[#8BDFD8]  w-80 h-fit border-r-2">
+      <td className="bg-[#a6f2e8]  w-80 h-fit border-r-2">
         <h2 className="h-30">
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
@@ -126,7 +126,7 @@ function Evening() {
           )}
         </h2>
       </td>
-      <td className=" bg-[#8BDFD8] w-8 h-fit border-r-2">
+      <td className=" bg-[#8BDFD8] w-8 h-10 rounded-r-lg rounded-l-none">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <button

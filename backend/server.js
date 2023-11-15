@@ -7,19 +7,19 @@ const app = express();  // Crea la instancia de Express
 
 app.use(bodyParser.json());
 
-const conexion=mysql.createConnection({
-    host : 'localhost',
+const conexion = mysql.createConnection({
+    host: 'localhost',
     user: 'root',
     password: '',
     database: 'medicamentosBD'
 });
 
-conexion.connect((error)=>{
-   if(error){
-      console.log("Error de conexion", error)
-   } else {
-      console.log("Conexión realizada")
-   }
+conexion.connect((error) => {
+    if (error) {
+        console.log("Error de conexion", error)
+    } else {
+        console.log("Conexión realizada")
+    }
 });
 
 app.listen(8082, () => {

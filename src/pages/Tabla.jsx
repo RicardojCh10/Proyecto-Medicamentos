@@ -8,8 +8,6 @@ import AddNew from "../components/AddNew";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useContexto } from "../context/MainContext";
-import "./Tabla.css"; // Asegúrate de que este sea el nombre correcto de tu archivo CSS
-
 
 function Tabla() {
   const cerrarSesion = () => {
@@ -40,28 +38,25 @@ function Tabla() {
   return (
     <>
       <div>
-        <div>
-          <h2 className="w-full flex-col text-center text-3xl p-5">
-            CUADRO DE MEDICAMENTOS
-          </h2>
+        <br></br>
+        <div className="flex items-center justify-between mx-2">
+          <h4 className="text-lg font-bold text-black">HOLA! BIENVENIDO</h4>
+          <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-red-400">
+            CERRAR SESIÓN
+          </button>
         </div>
-
 
         <AddNew abierto={abierto} setAbierto={setAbierto} />
 
-        <br></br>
-        <br></br>
+        <div>
+          <h2 className="w-full flex-col text-center text-8xl p-5">
+            <span className="text-[#57bdb7] font-bold">CUADRO DE</span>
+            <br />
+            <span className="text-[#57bdb7] font-bold">MEDICAMENTOS</span>
+          </h2>
+        </div>
 
-        <div className="bg-white rounded-sm w-[90%] mx-auto h-[40%] border-x-2 border-b-4 border-t flex items-center justify-center flex-wrap py-8">
-          <div className="flex items-center justify-between w-full mx-10">
-            <button
-              className="text-black border-red-600 border-2 transition-all duration-300 ease-in-out hover:bg-red-700 focus:ring focus:outline-none focus:ring-red-300 m-3 px-2 border border-red-600 rounded-sm w-32"
-              onClick={() => cerrarSesion()}
-            >
-              CERRAR SESIÓN
-            </button>
-          </div>
-
+        <div className="bg-white flex items-center justify-center flex-wrap py-8">
           <table className="h-80">
             <table className="my-0.5">
               <thead>
