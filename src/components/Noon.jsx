@@ -73,14 +73,14 @@ import noon from '../assets/noon.png'
       const currentMonth = currentTime.getMonth() + 1; // Months are zero-based
       const currentDay = currentTime.getDate();
 
-      const horaProgramada = new Date(`${currentYear}-${currentMonth}-${currentDay} ${medicamento.hora_programada}`);
+      const horaProgramada = new Date(`${currentYear}-${currentMonth}-${currentDay} ${medicamento.hora}`);
 
       // Check if the current time is greater than the scheduled time
       const showButton = currentTime > horaProgramada;
 
       return (
         <h2 key={index} className='h-15' >
-          {medicamento.hora_programada}
+          {medicamento.hora}
           {showButton && <button className='ml-2' onClick={() => handleTime(medicamento.id)}><span className='text-2xl'>+</span></button>}
         </h2>
       );

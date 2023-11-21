@@ -8,7 +8,6 @@ function AddNew({ abierto, setAbierto }) {
     nombre: "",
     dosis: "",
     dias: "",
-    hora: "",
     comentarios: "",
     Si_es_necesario: false,
   };
@@ -62,7 +61,7 @@ function AddNew({ abierto, setAbierto }) {
     const formDataFinal = {
       nombre_medicamento: formularioData.nombre,
       dosis: formularioData.dosis,
-      momento_dia: "Mañana",
+      momento_dia: "",
       Si_es_necesario: formularioData.Si_es_necesario,
       veces_a_tomar: 3,
       horaVeces_a_tomar: formularioData.hora,

@@ -1,7 +1,7 @@
-const express = require('express');
-const mysql = require('mysql');
-const cors = require('cors');
-const bodyParser = require('body-parser');
+import express from 'express'
+import mysql from 'mysql'
+import cors from 'cors'
+import bodyParser from 'body-parser';
 
 const app = express();  // Crea la instancia de Express
 
@@ -16,14 +16,14 @@ const conexion = mysql.createConnection({
 
 conexion.connect((error) => {
     if (error) {
-        console.log("Error de conexion", error)
+        console.log("ERROR DE CONEXIÓN", error)
     } else {
-        console.log("Conexión realizada")
+        console.log("CONEXIÓN EXITOSA")
     }
 });
 
 app.listen(8082, () => {
-    console.log('Escuchando servidor 8082');
+    console.log('ESCUCHANDO EN EL PUERTO 8082');
 });
 
 
@@ -31,13 +31,13 @@ app.use(cors())
 
 
 app.get("/medicamentos", (peticion, respuesta) => {
-    const sql = "SELECT * FROM Medicamentos WHERE veces_a_tomar > 0 ";
+    const sql = "SELECT * FROM medicamentos WHERE veces_a_tomar > 0 ";
 
     conexion.query(sql, (error, resultado) => {
         if (error) {
-            return respuesta.json({ Error: "ERROR" });
+            return respuesta.json({ Error: "ERROR AL REALIZAR LA PETICIÓN" });
         } else {
-            return respuesta.json({ Estatus: "Ok", medicamentos: resultado });
+            return respuesta.json({ Estatus: "PETICIÓN EXITOSA", medicamentos: resultado });
         }
     });
 });
@@ -46,26 +46,26 @@ app.get('/listaMedicamentos', (req, respuesta) => {
     const user = req.query.user;
     console.log(user);
     const values = [user];
-    const sql = "SELECT DISTINCT mn.nombre FROM Medicamentos_nombres mn WHERE mn.nombre NOT IN ( SELECT DISTINCT m.nombre_medicamento FROM Medicamentos m WHERE m.id_user = ?  );";
+    const sql = "SELECT DISTINCT mn. nombre_medicamento FROM medicamentos_nombres mn WHERE mn.nombre_medicamento NOT IN ( SELECT DISTINCT m.nombre_medicamento FROM Medicamentos m WHERE m.id_user = ?  );"
     conexion.query(sql, values, (error, resultado) => {
         if (error) {
-            return respuesta.json({ Error: "ERROR" });
+            return respuesta.json({ Error: "ERROR AL REALIZAR LA PETICIÓN" });
         } else {
-            return respuesta.json({ Estatus: "Ok", medicamentos: resultado });
+            return respuesta.json({ Estatus: "PETICIÓN EXITOSA", medicamentos: resultado });
         }
     });
 });
 
 app.get("/medicamentosMorning", (req, respuesta) => {
     const user = req.query.user;
-    const sql = "SELECT * FROM Medicamentos WHERE momento_dia = 'Mañana' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
+    const sql = "SELECT * FROM medicamentos WHERE momento_dia = 'Mañana' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;"
     const values = [user];
     conexion.query(sql, values, (error, resultado) => {
 
         if (error) {
-            return respuesta.json({ Error: "ERROR" });
+            return respuesta.json({ Error: "ERROR AL REALIZAR LA CONEXIÓN" });
         } else {
-            return respuesta.json({ Estatus: "Ok", medicamentos: resultado });
+            return respuesta.json({ Estatus: "PETICIÓN EXITOSA", medicamentos: resultado });
         }
     });
 });
@@ -136,48 +136,48 @@ app.post('/api/agregar', (req, res) => {
     const user = req.query.user;
     const datos = req.body;
     const tomas = datos.Si_es_necesario ? 1 : (datos.veces_a_tomar * 24) / datos.horaVeces_a_tomar;
-    const sql = "INSERT INTO Medicamentos (nombre_medicamento, dosis, hora, momento_dia, Si_es_necesario, veces_a_tomar, horaVeces_a_tomar, comentarios, id_user) VALUES (?,?,?,?,?,?,?,?,?)";
-    const values = [datos.nombre_medicamento, datos.dosis, formattedTime.hora, datos.momento_dia, datos.Si_es_necesario, tomas, datos.horaVeces_a_tomar, datos.comentarios, user];
+    const sql = "INSERT INTO Medicamentos (nombre_medicamento, dosis, momento_dia, Si_es_necesario, veces_a_tomar, horaVeces_a_tomar, comentarios, id_user) VALUES (?,?,?,?,?,?,?,?)";
+    const values = [datos.nombre_medicamento, datos.dosis, datos.momento_dia, datos.Si_es_necesario, tomas, datos.horaVeces_a_tomar, datos.comentarios, user];
 
     conexion.query(sql, values, (error, resultados) => {
         if (error) {
             console.log(error);
-            return res.status(500).json({ message: 'Error de la bd' });
+            return res.status(500).json({ message: 'ERROR EN LA BASE DE DATOS' });
         }
         res.json(resultados);
     });
 });
 
 
-app.delete('/api/eliminar/:id', (req, res) => {
-    const id = parseInt(req.params.id);
+app.delete('/api/eliminar/:id_medicamento', (req, res) => {
+    const id = req.params.id_medicamento;
     const sql = "DELETE FROM Medicamentos WHERE id_medicamento = ?";
     const values = [id];
 
     conexion.query(sql, values, (error, resultados) => {
         if (error) {
             console.log(error);
-            return res.status(500).json({ message: 'Error de la bd' });
+            return res.status(500).json({ message: 'ERROR EN LA BASE DE DATOS' });
         }
         res.json(resultados);
     });
 });
-app.put('/api/hora/:id', (req, res) => {
-    const id = req.params.id;
+app.put('/api/hora/:id_medicamento', (req, res) => {
+    const id = req.params.id_medicamento;
     const selectSql = "SELECT veces_a_tomar, horaVeces_a_tomar FROM Medicamentos WHERE id_medicamento = ?";
     const selectValues = [id];
 
     conexion.query(selectSql, selectValues, (error, resultados) => {
         if (error) {
             console.log(error);
-            return res.status(500).json({ message: 'Error de la bd' });
+            return res.status(500).json({ message: 'ERROR EN LA BASE DE DATOS' });
         }
 
         // Check if resultados is an array and has at least one object
         if (Array.isArray(resultados) && resultados.length > 0) {
             const horasParaToma = parseInt(resultados[0].horaVeces_a_tomar, 10); // Convert to a number
             const tomasRes = (parseInt(resultados[0].veces_a_tomar, 10) - 1);
-            console.log("Horas entre dosis:", horasParaToma);
+            console.log("HOARIO ENTRE DOSIS:", horasParaToma);
 
             // Check if algo is a valid number of hours
             if (!isNaN(horasParaToma) && horasParaToma >= 0 && horasParaToma <= 23) {
@@ -228,13 +228,13 @@ app.post('/login', (req, res) => {
     conexion.query(sql, values, (error, resultados) => {
         if (error) {
             console.log(error);
-            return res.status(500).json({ message: 'Error de la bd' });
+            return res.status(500).json({ message: 'ERROR EN LA BASE DE DATOS' });
         } else if (resultados.length === 0 || resultados[0].contrasena !== datos.contrasena) {
-            return res.status(401).json({ message: 'Credenciales incorrectas' });
+            return res.status(401).json({ message: 'CREDENCIALES INCORRECTAS' });
 
         } else if (resultados[0].contrasena == datos.contrasena)
             res.json(resultados);
-        console.log('terminado')
+        console.log('CONCLUIDO')
     })
 });
 
@@ -248,14 +248,14 @@ app.post('/registro', (req, res) => {
 
     conexion.query(insertSQL, values, (error, resultados) => {
         if (error) {
-            console.error('Error al intentar crear usuario: ' + error.message);
-            res.status(500).json({ error: 'Error al intentar crear el usuario' });
+            console.error('ERROR AL CREAR USUARIO: ' + error.message);
+            res.status(500).json({ error: 'ERROR AL CREAR USUARIO:' });
         } else {
             // After inserting the user, retrieve the newly inserted user's information
             conexion.query(selectSQL, (selectError, selectResult) => {
                 if (selectError) {
-                    console.error('Error al intentar recuperar el usuario: ' + selectError.message);
-                    res.status(500).json({ error: 'Error al intentar recuperar el usuario' });
+                    console.error('ERROR AL REPCUPERAR USUARIO: ' + selectError.message);
+                    res.status(500).json({ error: 'ERROR AL REPCUPERAR USUARIO:' });
                 } else {
                     // Assuming selectResult contains the user information
                     res.json(selectResult);
@@ -266,12 +266,12 @@ app.post('/registro', (req, res) => {
 });
 
 app.get('/api/perfil', (req, res) => {
-    const sql = 'SELECT * FROM perfil WHERE id_user = 1;';
+    const sql = 'SELECT * FROM perfil WHERE id_user = ?;';
 
     conexion.query(sql, (error, resultados) => {
         if (error) {
-            console.error('Error al intentar obtener perfil: ' + error.message);
-            res.status(500).json({ error: 'Error al intentar obtener el perfil' });
+            console.error('ERROR AL OBTENER EL PERFIL' + error.message);
+            res.status(500).json({ error: 'ERROR AL OBTENER EL PERFIL' });
         } else {
             res.json(resultados);
         }

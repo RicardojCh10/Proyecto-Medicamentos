@@ -87,7 +87,7 @@ function Morning() {
                     className="ml-2"
                     onClick={() => handleTime(medicamento.id_medicamento)}
                   >
-                    <span className="text-2xl">+</span>
+                    <span className="text-2xl">Actualizar</span>
                   </button>
                 )}
               </h2>

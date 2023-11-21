@@ -30,7 +30,7 @@ function Login() {
       .post("http://localhost:8082/login", datos)
       .then((respuesta) => {
         if (respuesta.status === 200) {
-          setDatos({ ...datos, autenticado: true, user: respuesta.data[0].id });
+          setDatos({ ...datos, autenticado: true, user: respuesta.data[0].id_user });
         } else {
           setError("Credenciales incorrectas, inténtalo de nuevo");
         }
