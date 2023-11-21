@@ -37,7 +37,10 @@ function Evening() {
       {/*Nombre*/}
       <th className="bg-[#59bcb8] w-40 h-25  rounded-l-lg rounded-r-none font-semibold">
         EVENING
-        <img className="items-center justify-center mx-auto mb-auto w-20 h-20" src={evening}></img>
+        <img
+          className="items-center justify-center mx-auto mb-auto w-20 h-20"
+          src={evening}
+        ></img>
       </th>
       <td className="bg-[#a6f2e8]  w-40 h-fit border-r-2">
         {medicamentos ? (
@@ -45,7 +48,7 @@ function Evening() {
             <h2>{medicamento.nombre_medicamento}</h2>
           ))
         ) : (
-          <p>Loading...</p>
+          <p>CARGANDO...</p>
         )}
       </td>
 
@@ -56,7 +59,7 @@ function Evening() {
             <h2 key={index}>{medicamento.dosis}</h2>
           ))
         ) : (
-          <p>Loading...</p>
+          <p>CARGANDO...</p>
         )}
       </td>
 
@@ -84,17 +87,17 @@ function Evening() {
                 {medicamento.hora}
                 {showButton && (
                   <button
-                    className="ml-2"
+                    className="ml-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                     onClick={() => handleTime(medicamento.id_medicamento)}
                   >
-                    <span className="text-2xl">+</span>
+                    TOMADO
                   </button>
                 )}
               </h2>
             );
           })
         ) : (
-          <p>Loading...</p>
+          <p>CARGANDO...</p>
         )}
       </td>
 
@@ -108,7 +111,7 @@ function Evening() {
               <h2 key={index}>{medicamento.fecha}</h2>
             ))
           ) : (
-            <p>Loading...</p>
+            <p>CARGANDO...</p>
           )}
         </td>
       </td>
@@ -122,7 +125,7 @@ function Evening() {
               </h2>
             ))
           ) : (
-            <p>Loading...</p>
+            <p>CARGANDO...</p>
           )}
         </h2>
       </td>
@@ -130,14 +133,14 @@ function Evening() {
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <button
-              className="w-full"
+              className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleDelete(medicamento.id_medicamento)}
             >
-              x
+              TERMINADO
             </button>
           ))
         ) : (
-          <p>Loading...</p>
+          <p>CARGANDO...</p>
         )}
       </td>
     </>

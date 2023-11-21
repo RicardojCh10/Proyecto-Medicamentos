@@ -29,12 +29,12 @@ export const ContextoContextProvider = ({ children }) => {
     Si_es_necesario: false,
   };
 
-  const handleTime = (id) => {
+  const handleTime = (id_medicamento) => {
     axios
-      .put(`http://localhost:8082/api/hora/${id}`)
+      .put(`http://localhost:8082/api/hora/${id_medicamento}`)
       .then((response) => {
         const updatedMedicamentos = medicamentos.map((medicamento) =>
-          medicamento.id === id
+          medicamento.id_medicamento === id_medicamento
             ? { ...medicamento, hasTaken: true }
             : medicamento
         );
@@ -46,12 +46,12 @@ export const ContextoContextProvider = ({ children }) => {
       );
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = (id_medicamento) => {
     axios
-      .delete(`http://localhost:8082/api/eliminar/${id}`)
+      .delete(`http://localhost:8082/api/eliminar/${id_medicamento}`)
       .then((response) => {
         setMedicamentos(
-          medicamentos.filter((medicamento) => medicamento.id !== id)
+          medicamentos.filter((medicamento) => medicamento.id_medicamento !== id_medicamento)
         );
         setTriggerEffect((prev) => !prev);
       })

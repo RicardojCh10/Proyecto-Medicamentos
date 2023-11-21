@@ -38,12 +38,17 @@ function Morning() {
       {/*Nombre*/}
       <th className="bg-[#fabdbc] w-40 h-25  rounded-l-lg rounded-r-none font-semibold">
         MORNING
-        <img className="items-center justify-center mx-auto mb-auto w-20 h-20 " src={morning} />
+        <img
+          className="items-center justify-center mx-auto mb-auto w-20 h-20 "
+          src={morning}
+        />
       </th>
       <td className="bg-[#fcd8d9]  w-40 h-fit border-r-2">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
-            <h2 key={medicamento.id_medicamento}>{medicamento.nombre_medicamento}</h2>
+            <h2 key={medicamento.id_medicamento}>
+              {medicamento.nombre_medicamento}
+            </h2>
           ))
         ) : (
           <p>CARGANDO...</p>
@@ -84,10 +89,10 @@ function Morning() {
                 {medicamento.hora}
                 {showButton && (
                   <button
-                    className="ml-2"
+                    className="ml-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                     onClick={() => handleTime(medicamento.id_medicamento)}
                   >
-                    <span className="text-2xl">Actualizar</span>
+                    TOMADO
                   </button>
                 )}
               </h2>
@@ -118,10 +123,6 @@ function Morning() {
             medicamentos.map((medicamento, index) => (
               <h2
                 key={medicamento.id_medicamento}
-                className="w-30"
-                style={{
-                  backgroundColor: index % 2 === 0 ? "#FF9688" : "#FFBAC7",
-                }}
               >
                 {medicamento.comentarios}
               </h2>
@@ -135,19 +136,17 @@ function Morning() {
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <button
-              className="w-full"
-              style={{
-                backgroundColor: index % 2 === 0 ? "#FF9688" : "#FFBAC7",
-              }}
+              className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleDelete(medicamento.id_medicamento)}
             >
-              Tomado
+              TERMINADO
             </button>
           ))
         ) : (
           <p>CARGANDO...</p>
         )}
       </td>
+      
     </>
   );
 }

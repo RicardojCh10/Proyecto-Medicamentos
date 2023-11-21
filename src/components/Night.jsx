@@ -37,7 +37,10 @@ function Night() {
       {/*Nombre*/}
       <th className="bg-[#6a8cba] w-40 h-25  rounded-l-lg rounded-r-none font-semibold">
         NIGHT
-        <img className="items-center justify-center mx-auto mb-auto w-20 h-20" src={night}></img>
+        <img
+          className="items-center justify-center mx-auto mb-auto w-20 h-20"
+          src={night}
+        ></img>
       </th>
       <td className="bg-[#aac3df]  w-40 border-r-2">
         {medicamentos ? (
@@ -45,7 +48,7 @@ function Night() {
             <h2 className="h-15">{medicamento.nombre_medicamento}</h2>
           ))
         ) : (
-          <p>Loading...</p>
+          <p>CARGANDO...</p>
         )}
       </td>
       {/*Dosis*/}
@@ -57,7 +60,7 @@ function Night() {
             </h2>
           ))
         ) : (
-          <p>Loading...</p>
+          <p>CARGANDO...</p>
         )}
       </td>
 
@@ -85,17 +88,17 @@ function Night() {
                 {medicamento.hora}
                 {showButton && (
                   <button
-                    className="ml-2"
+                    className="ml-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                     onClick={() => handleTime(medicamento.id_medicamento)}
                   >
-                    <span className="text-2xl">+</span>
+                    TOMADO
                   </button>
                 )}
               </h2>
             );
           })
         ) : (
-          <p>Loading...</p>
+          <p>CARGANDO...</p>
         )}
       </td>
 
@@ -111,7 +114,7 @@ function Night() {
               </h2>
             ))
           ) : (
-            <p>Loading...</p>
+            <p>CARGANDO...</p>
           )}
         </td>
       </td>
@@ -125,7 +128,7 @@ function Night() {
               </h2>
             ))
           ) : (
-            <p>Loading...</p>
+            <p>CARGANDO...</p>
           )}
         </h2>
       </td>
@@ -133,14 +136,16 @@ function Night() {
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <button
-              className="w-full "
+              className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleDelete(medicamento.id_medicamento)}
             >
-              x
+              TERMINADO
+              
             </button>
+            
           ))
         ) : (
-          <p>Loading...</p>
+          <p>CARGANDO...</p>
         )}
       </td>
     </>

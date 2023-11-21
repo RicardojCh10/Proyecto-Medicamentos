@@ -5,9 +5,8 @@ import Evening from "../components/Evening";
 import Night from "../components/Night";
 import Necessary from "../components/Necessary";
 import AddNew from "../components/AddNew";
-import axios from "axios";
+import TableHeader from "../components/Columns"
 import { useNavigate } from "react-router-dom";
-import { useContexto } from "../context/MainContext";
 
 function Tabla() {
   const cerrarSesion = () => {
@@ -59,6 +58,15 @@ function Tabla() {
 
         <div className="bg-white flex items-center justify-center flex-wrap py-8">
           <table className="h-80">
+
+          <table className="my-0.5">
+              <thead>
+                <tr className="items-center justify-center ">
+                  <TableHeader/>
+                </tr>
+              </thead>
+            </table>
+
             <table className="my-0.5">
               <thead>
                 <tr className="items-center justify-center ">
