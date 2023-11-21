@@ -42,7 +42,7 @@ function Night() {
       <td className="bg-[#aac3df]  w-40 border-r-2">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
-            <h2 className="h-15">{medicamento.nombre}</h2>
+            <h2 className="h-15">{medicamento.nombre_medicamento}</h2>
           ))
         ) : (
           <p>Loading...</p>
@@ -74,7 +74,7 @@ function Night() {
             const currentDay = currentTime.getDate();
 
             const horaProgramada = new Date(
-              `${currentYear}-${currentMonth}-${currentDay} ${medicamento.hora_programada}`
+              `${currentYear}-${currentMonth}-${currentDay} ${medicamento.hora}`
             );
 
             // Check if the current time is greater than the scheduled time
@@ -82,11 +82,11 @@ function Night() {
 
             return (
               <h2 key={index} className="h-15">
-                {medicamento.hora_programada}
+                {medicamento.hora}
                 {showButton && (
                   <button
                     className="ml-2"
-                    onClick={() => handleTime(medicamento.id)}
+                    onClick={() => handleTime(medicamento.id_medicamento)}
                   >
                     <span className="text-2xl">+</span>
                   </button>
@@ -107,7 +107,7 @@ function Night() {
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
               <h2 key={index} className="h-15">
-                {medicamento.fecha_programada}
+                {medicamento.fecha}
               </h2>
             ))
           ) : (
@@ -134,7 +134,7 @@ function Night() {
           medicamentos.map((medicamento, index) => (
             <button
               className="w-full "
-              onClick={() => handleDelete(medicamento.id)}
+              onClick={() => handleDelete(medicamento.id_medicamento)}
             >
               x
             </button>

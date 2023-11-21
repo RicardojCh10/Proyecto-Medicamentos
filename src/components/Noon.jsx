@@ -81,7 +81,7 @@ import noon from '../assets/noon.png'
       return (
         <h2 key={index} className='h-15' >
           {medicamento.hora}
-          {showButton && <button className='ml-2' onClick={() => handleTime(medicamento.id)}><span className='text-2xl'>+</span></button>}
+          {showButton && <button className='ml-2' onClick={() => handleTime(medicamento.id_medicamento)}><span className='text-2xl'>+</span></button>}
         </h2>
       );
     })
@@ -98,7 +98,7 @@ import noon from '../assets/noon.png'
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
               <h2 key={index} >
-                {medicamento.fecha_programada}
+                {medicamento.fecha}
               </h2>
             ))
           ) : (
@@ -122,7 +122,7 @@ import noon from '../assets/noon.png'
       <td className=' bg-[#fae891] w-40 h-10 rounded-r-lg rounded-l-none'>
       {medicamentos ? (
             medicamentos.map((medicamento, index) => (
-              <button className='w-full' onClick={() => handleDelete(medicamento.id)}>x</button>
+              <button className='w-full' onClick={() => handleDelete(medicamento.id_medicamento)}>x</button>
             ))
           ) : (
             <p>Loading...</p>

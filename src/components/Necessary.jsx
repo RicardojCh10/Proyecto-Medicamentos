@@ -36,7 +36,7 @@ function Necessary() {
       <td className="bg-[#c9fbeb]  w-40 h-fit  border-r-2 ">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
-            <h2 key={medicamento.id}>{medicamento.nombre}</h2>
+            <h2 key={medicamento.id}>{medicamento.nombre_medicamento}</h2>
           ))
         ) : (
           <p>Loading...</p>
@@ -46,7 +46,7 @@ function Necessary() {
       <td className="bg-[#98cfba]  w-40 h-fit border-r-2  text-center">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
-            <h2 key={medicamento.id}>{medicamento.dosis}</h2>
+            <h2 key={medicamento.id_medicamento}>{medicamento.dosis}</h2>
           ))
         ) : (
           <p>Loading...</p>
@@ -57,7 +57,7 @@ function Necessary() {
         <td className="bg-[#c9fbeb]  w-40 h-fit text-center">
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
-              <h2 key={medicamento.id}>Cuando se necesite </h2>
+              <h2 key={medicamento.id_medicamento}>Cuando se necesite </h2>
             ))
           ) : (
             <p>Loading...</p>
@@ -69,7 +69,7 @@ function Necessary() {
         <td className="bg-[#98cfba]  w-40 h-fit ">
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
-              <h2 key={medicamento.id}>Si lo necesito </h2>
+              <h2 key={medicamento.id_medicamento}>Si lo necesito </h2>
             ))
           ) : (
             <p>Loading...</p>
@@ -81,7 +81,7 @@ function Necessary() {
         <h2 className="h-30 ">
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
-              <h2 key={medicamento.id}>{medicamento.comentarios}</h2>
+              <h2 key={medicamento.id_medicamento}>{medicamento.comentarios}</h2>
             ))
           ) : (
             <p>Loading...</p>
@@ -93,7 +93,7 @@ function Necessary() {
           medicamentos.map((medicamento, index) => (
             <button
               className="w-full"
-              onClick={() => handleDelete(medicamento.id)}
+              onClick={() => handleDelete(medicamento.id_medicamento)}
             >
               x
             </button>

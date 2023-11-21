@@ -39,8 +39,8 @@ function Registros() {
       .post("http://localhost:8082/registro", datos)
       .then((respuesta) => {
         if (respuesta.status === 200) {
-          console.log(respuesta.data[0].id);
-          setDatos({ ...datos, autenticado: true, user: respuesta.data[0].id });
+          console.log(respuesta.data[0].id_user);
+          setDatos({ ...datos, autenticado: true, user: respuesta.data[0].id_user });
         } else {
           setError("Credenciales incorrectas, inténtalo de nuevo");
         }

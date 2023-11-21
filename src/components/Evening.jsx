@@ -42,7 +42,7 @@ function Evening() {
       <td className="bg-[#a6f2e8]  w-40 h-fit border-r-2">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
-            <h2>{medicamento.nombre}</h2>
+            <h2>{medicamento.nombre_medicamento}</h2>
           ))
         ) : (
           <p>Loading...</p>
@@ -73,7 +73,7 @@ function Evening() {
             const currentDay = currentTime.getDate();
 
             const horaProgramada = new Date(
-              `${currentYear}-${currentMonth}-${currentDay} ${medicamento.hora_programada}`
+              `${currentYear}-${currentMonth}-${currentDay} ${medicamento.hora}`
             );
 
             // Check if the current time is greater than the scheduled time
@@ -81,11 +81,11 @@ function Evening() {
 
             return (
               <h2 key={index} className="h-15">
-                {medicamento.hora_programada}
+                {medicamento.hora}
                 {showButton && (
                   <button
                     className="ml-2"
-                    onClick={() => handleTime(medicamento.id)}
+                    onClick={() => handleTime(medicamento.id_medicamento)}
                   >
                     <span className="text-2xl">+</span>
                   </button>
@@ -105,7 +105,7 @@ function Evening() {
         <td className="bg-[#8BDFD8]  w-40 h-fit ">
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
-              <h2 key={index}>{medicamento.fecha_programada}</h2>
+              <h2 key={index}>{medicamento.fecha}</h2>
             ))
           ) : (
             <p>Loading...</p>
@@ -131,7 +131,7 @@ function Evening() {
           medicamentos.map((medicamento, index) => (
             <button
               className="w-full"
-              onClick={() => handleDelete(medicamento.id)}
+              onClick={() => handleDelete(medicamento.id_medicamento)}
             >
               x
             </button>

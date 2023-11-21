@@ -8,6 +8,7 @@ function AddNew({ abierto, setAbierto }) {
     nombre: "",
     dosis: "",
     dias: "",
+    hora: "",
     comentarios: "",
     Si_es_necesario: false,
   };
@@ -61,7 +62,7 @@ function AddNew({ abierto, setAbierto }) {
     const formDataFinal = {
       nombre_medicamento: formularioData.nombre,
       dosis: formularioData.dosis,
-      momento_dia: "",
+      momento_dia: "Mañana",
       Si_es_necesario: formularioData.Si_es_necesario,
       veces_a_tomar: 3,
       horaVeces_a_tomar: formularioData.hora,
@@ -69,7 +70,11 @@ function AddNew({ abierto, setAbierto }) {
     };
 
     axios
-      .post("http://localhost:8082/api/agregar", formDataFinal)
+      .post('http://localhost:8082/api/agregar', formDataFinal, {
+        params: {
+          user: localStorage.getItem('user'),
+        },
+      })
       .then((response) => {
         setResultado(response.data);
         setAbierto(false);
