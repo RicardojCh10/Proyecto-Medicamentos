@@ -31,7 +31,7 @@ app.use(cors())
 
 
 app.get("/medicamentos", (peticion, respuesta) => {
-    const sql = "SELECT * FROM medicamentos WHERE veces_a_tomar > 0 ";
+    const sql = "SELECT * FROM Medicamentos WHERE veces_a_tomar > 0 ";
 
     conexion.query(sql, (error, resultado) => {
         if (error) {
@@ -42,11 +42,11 @@ app.get("/medicamentos", (peticion, respuesta) => {
     });
 });
 
-app.get('/listaMedicamentos', (req, respuesta) => {
+app.get('/NombresMedicamentos', (req, respuesta) => {
     const user = req.query.user;
     console.log(user);
     const values = [user];
-    const sql = "SELECT DISTINCT mn. nombre_medicamento FROM medicamentos_nombres mn WHERE mn.nombre_medicamento NOT IN ( SELECT DISTINCT m.nombre_medicamento FROM Medicamentos m WHERE m.id_user = ?  );"
+    const sql = "SELECT DISTINCT mn.nombre FROM Medicamentos_nombres mn WHERE mn.nombre NOT IN ( SELECT DISTINCT m.nombre_medicamento FROM Medicamentos m WHERE m.id_user = ? );"
     conexion.query(sql, values, (error, resultado) => {
         if (error) {
             return respuesta.json({ Error: "ERROR AL REALIZAR LA PETICIÓN" });

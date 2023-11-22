@@ -22,7 +22,7 @@ function AddNew({ abierto, setAbierto }) {
     const fetchMedicamentos = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8082/listaMedicamentos",
+          "http://localhost:8082/NombresMedicamentos",
           {
             params: {
               user: localStorage.getItem("user"),
@@ -70,9 +70,9 @@ function AddNew({ abierto, setAbierto }) {
     };
 
     axios
-      .post('http://localhost:8082/api/agregar', formDataFinal, {
+      .post("http://localhost:8082/api/agregar", formDataFinal, {
         params: {
-          user: localStorage.getItem('user'),
+          user: localStorage.getItem("user"),
         },
       })
       .then((response) => {
@@ -93,7 +93,10 @@ function AddNew({ abierto, setAbierto }) {
 
         <form className="max-w-md bg-white p-6 rounded-md shadow-md">
           <div className="mb-4">
-            <label className="block mb-2 font-bold" htmlFor="nombre_medicamento">
+            <label
+              className="block mb-2 font-bold"
+              htmlFor="nombre_medicamento"
+            >
               MEDICAMENTO:
             </label>
             <select
@@ -152,7 +155,10 @@ function AddNew({ abierto, setAbierto }) {
               />
             </div>
             <div className="w-1/2 ml-2">
-              <label className="block mb-2 font-bold" htmlFor="dias_prescripcion">
+              <label
+                className="block mb-2 font-bold"
+                htmlFor="dias_prescripcion"
+              >
                 DURACIÓN (DÍA):
               </label>
               <input
@@ -169,7 +175,10 @@ function AddNew({ abierto, setAbierto }) {
           </div>
 
           <div className="mb-4">
-            <label className="block mb-2 font-bold" htmlFor="comentarios_medicamento">
+            <label
+              className="block mb-2 font-bold"
+              htmlFor="comentarios_medicamento"
+            >
               COMENTARIOS:
             </label>
             <textarea

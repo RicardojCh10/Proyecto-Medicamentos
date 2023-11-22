@@ -7,6 +7,7 @@ import Necessary from "../components/Necessary";
 import AddNew from "../components/AddNew";
 import TableHeader from "../components/Columns"
 import { useNavigate } from "react-router-dom";
+import { useContexto } from "../context/MainContext";
 
 function Tabla() {
   const cerrarSesion = () => {

@@ -9,7 +9,6 @@ export const useContexto = () => {
   const context = useContext(ContextoContext);
   if (!context) {
     throw new Error(
-      "useContexto debe estar dentro de los limites de ContextoContextProvider, y si, hice mi propio hook."
     );
   }
   return context;
@@ -29,12 +28,12 @@ export const ContextoContextProvider = ({ children }) => {
     Si_es_necesario: false,
   };
 
-  const handleTime = (id_medicamento) => {
+  const handleTime = (id) => {
     axios
-      .put(`http://localhost:8082/api/hora/${id_medicamento}`)
+      .put(`http://localhost:8082/api/hora/${id}`)
       .then((response) => {
         const updatedMedicamentos = medicamentos.map((medicamento) =>
-          medicamento.id_medicamento === id_medicamento
+          medicamento.id === id
             ? { ...medicamento, hasTaken: true }
             : medicamento
         );
@@ -46,12 +45,12 @@ export const ContextoContextProvider = ({ children }) => {
       );
   };
 
-  const handleDelete = (id_medicamento) => {
+  const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:8082/api/eliminar/${id_medicamento}`)
+      .delete(`http://localhost:8082/api/eliminar/${id}`)
       .then((response) => {
         setMedicamentos(
-          medicamentos.filter((medicamento) => medicamento.id_medicamento !== id_medicamento)
+          medicamentos.filter((medicamento) => medicamento.id!== id)
         );
         setTriggerEffect((prev) => !prev);
       })
