@@ -41,7 +41,7 @@ export const ContextoContextProvider = ({ children }) => {
         setTriggerEffect((prev) => !prev);
       })
       .catch((error) =>
-        console.error("Error al realizar la solicitud PUT", error)
+        console.error("ERROR A REALIZAR PUT", error)
       );
   };
 
@@ -55,7 +55,7 @@ export const ContextoContextProvider = ({ children }) => {
         setTriggerEffect((prev) => !prev);
       })
       .catch((error) => {
-        console.error("Error deleting medication", error);
+        console.error("ERROR AL ELIMINAR MEDICAMENTO", error);
       });
   };
 

@@ -12,7 +12,7 @@ function Evening() {
       try {
         const user = localStorage.getItem("user");
         const response = await axios.get(
-          "http://localhost:8082/medicamentosTarde",
+          "http://localhost:8082/medicamentosEvening",
           {
             params: { user },
           }

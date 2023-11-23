@@ -73,12 +73,12 @@ function Login() {
           <h2 className="mb-4 text-2xl font-bold">Iniciar sesión para usuarios existentes</h2>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
-              Correo Electrónico:
+              EMAIL:
             </label>
             <input
               type="email"
               className="form-control"
-              placeholder="ejemplo@gmail.com"
+              placeholder="medicamentos@gmail.com"
               name="email"
               value={datos.email}
               onChange={(e) => {
@@ -88,12 +88,12 @@ function Login() {
           </div>
           <div className="mb-3">
             <label htmlFor="contrasena" className="form-label">
-              Contraseña:
+              CONTRASEÑA:
             </label>
             <input
               type={showPassword ? "text" : "password"}
               className="form-control"
-              placeholder="Ingresa tu contraseña"
+              placeholder="Ingresa tu Contraseña"
               name="contrasena"
               value={datos.contrasena}
               onChange={(e) => {
@@ -105,27 +105,27 @@ function Login() {
                 className="form-text text-muted"
                 onClick={handleShowPassword}
               >
-                Ocultar contraseña
+                OCULTAR CONTRASEÑA
               </small>
             ) : (
               <small
                 className="form-text text-muted"
                 onClick={handleShowPassword}
               >
-                Mostrar contraseña
+                VER CONTRASEÑA
               </small>
             )}
           </div>
           <button type="submit" className="btn btn-primary bg-black">
-            Iniciar sesión
+            INICIAR SESIÓN
           </button>
           {error && <div className="alert alert-danger mt-3">{error}</div>}
           <div className="mt-3 text-center my-3">
-            ¿No tienes una cuenta?
+            CREAR UNA NUEVA CUENTA
           </div>
           <div className="btn-registrarse-container">
             <Link to="/registro" className="btn btn-registrarse">
-              Regístrate
+              REGÍSTRATE
             </Link>
           </div>
         </form>

@@ -70,7 +70,7 @@ app.get("/medicamentosMorning", (req, respuesta) => {
     });
 });
 
-app.get("/medicamentosMedio", (req, respuesta) => {
+app.get("/medicamentosNoon", (req, respuesta) => {
     const user = req.query.user;
     const sql = "SELECT * FROM Medicamentos WHERE momento_dia = 'Medio dia' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
     const values = [user];
@@ -84,7 +84,7 @@ app.get("/medicamentosMedio", (req, respuesta) => {
     });
 });
 
-app.get("/medicamentosTarde", (req, respuesta) => {
+app.get("/medicamentosEvening", (req, respuesta) => {
     const user = req.query.user;
     const sql = "SELECT * FROM Medicamentos WHERE momento_dia = 'Tarde' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
     const values = [user];
@@ -97,21 +97,8 @@ app.get("/medicamentosTarde", (req, respuesta) => {
         }
     });
 });
-app.get("/medicamentosNecesario", (req, respuesta) => {
-    const user = req.query.user;
-    const sql = "SELECT * FROM Medicamentos WHERE momento_dia = 'Cuando sea necesario' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
-    const values = [user];
-    conexion.query(sql, values, (error, resultado) => {
 
-        if (error) {
-            return respuesta.json({ Error: "ERROR" });
-        } else {
-            return respuesta.json({ Estatus: "Ok", medicamentos: resultado });
-        }
-    });
-});
-
-app.get("/medicamentosNoche", (req, respuesta) => {
+app.get("/medicamentosNight", (req, respuesta) => {
     const user = req.query.user;
     const sql = "SELECT * FROM Medicamentos WHERE momento_dia = 'Noche' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
     const values = [user];
@@ -125,13 +112,22 @@ app.get("/medicamentosNoche", (req, respuesta) => {
     });
 });
 
+app.get("/medicamentosNecessary", (req, respuesta) => {
+    const user = req.query.user;
+    const sql = "SELECT * FROM Medicamentos WHERE momento_dia = 'Cuando sea necesario' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
+    const values = [user];
+    conexion.query(sql, values, (error, resultado) => {
+
+        if (error) {
+            return respuesta.json({ Error: "ERROR" });
+        } else {
+            return respuesta.json({ Estatus: "Ok", medicamentos: resultado });
+        }
+    });
+});
+
 
 app.post('/api/agregar', (req, res) => {
-
-    const horaDes = { timeZone: 'America/Cancun', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-    const formateador = new Intl.DateTimeFormat('en-US', horaDes);
-    const currentTimeInCancun = new Date();
-    const formattedTime = formateador.format(currentTimeInCancun);
 
     const user = req.query.user;
     const datos = req.body;
@@ -162,9 +158,11 @@ app.delete('/api/eliminar/:id_medicamento', (req, res) => {
         res.json(resultados);
     });
 });
+
+
 app.put('/api/hora/:id_medicamento', (req, res) => {
     const id = req.params.id_medicamento;
-    const selectSql = "SELECT veces_a_tomar, horaVeces_a_tomar FROM Medicamentos WHERE id_medicamento = ?";
+    const selectSql = "SELECT horaVeces_a_tomar FROM Medicamentos WHERE id_medicamento = ?";
     const selectValues = [id];
 
     conexion.query(selectSql, selectValues, (error, resultados) => {
@@ -173,34 +171,19 @@ app.put('/api/hora/:id_medicamento', (req, res) => {
             return res.status(500).json({ message: 'ERROR EN LA BASE DE DATOS' });
         }
 
-        // Check if resultados is an array and has at least one object
         if (Array.isArray(resultados) && resultados.length > 0) {
-            const horasParaToma = parseInt(resultados[0].horaVeces_a_tomar, 10); // Convert to a number
-            const tomasRes = (parseInt(resultados[0].veces_a_tomar, 10) - 1);
-            console.log("HOARIO ENTRE DOSIS:", horasParaToma);
+            const horasParaToma = parseInt(resultados[0].horaVeces_a_tomar, 10);
 
-            // Check if algo is a valid number of hours
             if (!isNaN(horasParaToma) && horasParaToma >= 0 && horasParaToma <= 23) {
-
-                const horaDes = { timeZone: 'America/Cancun', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }; // Use '2-digit' for 24-hour format
+                const horaDes = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
                 const formateador = new Intl.DateTimeFormat('en-US', horaDes);
-                const currentTimeInCancun = new Date();
+                const currentTime = new Date();
 
-                const formattedTime = formateador.format(currentTimeInCancun);
+                const newTime = new Date(currentTime.getTime() + horasParaToma * 60 * 60 * 1000);
+                const horaNueva = formateador.format(newTime);
 
-                // Add the value of algo to the current time
-                const newTimeInCancun = new Date(currentTimeInCancun);
-                newTimeInCancun.setHours(newTimeInCancun.getHours() + horasParaToma);
-
-                const days = new Date(newTimeInCancun.getTime() + horasParaToma * 60 * 60 * 1000);
-                const fecha = `${days.getFullYear()}-${days.getMonth() + 1}-${days.getDate()}`;
-                const horaNueva = formateador.format(newTimeInCancun);
-
-                console.log("Current time in Cancun:", formattedTime);
-                console.log("Time in Cancun + Algo hours:", horaNueva);
-
-                const upd = 'UPDATE Medicamentos SET hora = ?, veces_a_tomar = ?, fecha = ? WHERE id_medicamento = ?;';
-                const updValues = [horaNueva, tomasRes, fecha, id];
+                const upd = 'UPDATE Medicamentos SET hora = ? WHERE id_medicamento = ?;';
+                const updValues = [horaNueva, id];
                 conexion.query(upd, updValues, (error, resultados) => {
                     if (error) {
                         console.log(error);
@@ -210,13 +193,12 @@ app.put('/api/hora/:id_medicamento', (req, res) => {
                 });
 
             } else {
-                console.log("Invalid value.");
+                console.log("EL VALOR NO ES VALIDO");
             }
-        } else {
-            console.log("No data found for the given ID.");
         }
     });
 });
+
 
 
 app.post('/login', (req, res) => {
@@ -265,15 +247,3 @@ app.post('/registro', (req, res) => {
     });
 });
 
-app.get('/api/perfil', (req, res) => {
-    const sql = 'SELECT * FROM perfil WHERE id_user = ?;';
-
-    conexion.query(sql, (error, resultados) => {
-        if (error) {
-            console.error('ERROR AL OBTENER EL PERFIL' + error.message);
-            res.status(500).json({ error: 'ERROR AL OBTENER EL PERFIL' });
-        } else {
-            res.json(resultados);
-        }
-    })
-});

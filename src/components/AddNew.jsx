@@ -88,8 +88,10 @@ function AddNew({ abierto, setAbierto }) {
 
   return (
     <div className="flex items-center justify-center h-screen">
-      <div className="bg-gray-100 p-8">
-        <h2 className="text-3xl font-bold mb-4">AGREGAR MEDICAMENTO</h2>
+      <div className="bg-[#57bdb7] p-8 rounded-lg">
+        <h2 className="text-3xl font-bold text-white mb-4">
+          NUEVO MEDICAMENTO:
+        </h2>
 
         <form className="max-w-md bg-white p-6 rounded-md shadow-md">
           <div className="mb-4">
@@ -118,7 +120,7 @@ function AddNew({ abierto, setAbierto }) {
                   </option>
                 ))
               ) : (
-                <p>Loading...</p>
+                <p>CARGANDO...</p>
               )}
             </select>
           </div>
@@ -207,10 +209,11 @@ function AddNew({ abierto, setAbierto }) {
 
           <div>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded items-center"
+              className="bg-black hover:bg-[#57bdb7] text-white font-bold py-3 px-6 rounded-full flex items-center justify-center"
               onClick={handleSubmit}
+              style={{ borderRadius: "20px" }}
             >
-              AGREGAR
+              AGREGAR MEDICAMENTO
             </button>
           </div>
         </form>

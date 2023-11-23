@@ -77,7 +77,7 @@ function Registros() {
       <form onSubmit={handleRegister}>
         <h2 className="mb-4 text-2xl font-bold">Registrarse</h2>
         <div>
-          <label>Nombre:</label>
+          <label>NOMBRE:</label>
           <input
             type="text"
             placeholder="Ingresa tu Nombre"
@@ -89,7 +89,7 @@ function Registros() {
         </div>
 
         <div>
-          <label>Contraseña:</label>
+          <label>CONTRASEÑA:</label>
           <input
             type="password"
             placeholder="Ingresa tu Contraseña"
@@ -101,7 +101,7 @@ function Registros() {
         </div>
 
         <div>
-          <label>Confirmar Contraseña:</label>
+          <label>CONFIRMAR CONTRASEÑA:</label>
           <input
             type="password"
             placeholder="Confirma tu Contraseña"
@@ -113,10 +113,10 @@ function Registros() {
         </div>
 
         <div>
-          <label>Correo Electronico:</label>
+          <label>EMAIL:</label>
           <input
             type="email"
-            placeholder="ejemplo@gmail.com"
+            placeholder="medicamentos@gmail.com"
             value={datos.email}
             onChange={(e) => {
               setDatos({ ...datos, email: e.target.value });
@@ -124,7 +124,7 @@ function Registros() {
           />
         </div>
 
-        <button type="submit">Registrarse</button>
+        <button type="submit">CREAR CUENTA</button>
         {error && <div className="error">{error}</div>}
       </form>
     </div>

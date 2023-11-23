@@ -12,7 +12,7 @@ function Noon() {
       try {
         const user = localStorage.getItem("user");
         const response = await axios.get(
-          "http://localhost:8082/medicamentosMedio",
+          "http://localhost:8082/medicamentosNoon",
           {
             params: { user },
           }
@@ -43,9 +43,11 @@ function Noon() {
         ></img>
       </th>
       <td className="bg-[#fbeaa7]  w-40 h-fit border-r-2">
-        {medicamentos ? (
+      {medicamentos ? (
           medicamentos.map((medicamento, index) => (
-            <h2>{medicamento.nombre}</h2>
+            <h2 key={medicamento.id_medicamento}>
+              {medicamento.nombre_medicamento}
+            </h2>
           ))
         ) : (
           <p>CARGANDO...</p>

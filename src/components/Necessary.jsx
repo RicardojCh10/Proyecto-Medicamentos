@@ -12,7 +12,7 @@ function Necessary() {
       try {
         const user = localStorage.getItem("user");
         const response = await axios.get(
-          "http://localhost:8082/medicamentosNecesario",
+          "http://localhost:8082/medicamentosNecessary",
           {
             params: { user },
           }
