@@ -51,7 +51,7 @@ function Morning() {
             </h2>
           ))
         ) : (
-          <p>CARGANDO...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
       {/*Dosis*/}
@@ -61,7 +61,7 @@ function Morning() {
             <h2 key={medicamento.id_medicamento}>{medicamento.dosis}</h2>
           ))
         ) : (
-          <p>CARGANDO...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
 
@@ -99,7 +99,7 @@ function Morning() {
             );
           })
         ) : (
-          <p>CARGANDO...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
 
@@ -112,7 +112,7 @@ function Morning() {
               <h2 key={medicamento.id}>{medicamento.fecha}</h2>
             ))
           ) : (
-            <p>CARGANDO...</p>
+            <p>CARGANDO DATOS...</p>
           )}
         </td>
       </td>
@@ -128,7 +128,7 @@ function Morning() {
               </h2>
             ))
           ) : (
-            <p>CARGANDO...</p>
+            <p>CARGANDO DATOS...</p>
           )}
         </h2>
       </td>
@@ -143,7 +143,7 @@ function Morning() {
             </button>
           ))
         ) : (
-          <p>CARGANDO...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
       

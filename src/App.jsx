@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // RUTAS
 import Login from "./pages/Login";
 import Registros from "./pages/Registros";
-import Tabla from "./pages/Tabla";
+import TablaMedicamentos from "./pages/TablaMedicamentos";
 import "./index.css";
 import { ContextoContextProvider } from "./context/MainContext";
 
@@ -17,9 +17,9 @@ const router = createBrowserRouter([
     element: <Registros />,
   },
   {
-    path: "/tabla",
-    element: <Tabla />,
-  },
+    path: "/TablaMedicamentos",
+    element: <TablaMedicamentos/>,
+  }
 ]);
 
 function App() {

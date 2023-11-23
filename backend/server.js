@@ -8,10 +8,10 @@ const app = express();  // Crea la instancia de Express
 app.use(bodyParser.json());
 
 const conexion = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'medicamentosBD'
+    host: 'mysql-ricardojchi.alwaysdata.net',
+    user: '336854',
+    password: 'UNI10UtRch7$',
+    database: 'ricardojchi_medicamentosbd'
 });
 
 conexion.connect((error) => {
@@ -31,7 +31,7 @@ app.use(cors())
 
 
 app.get("/medicamentos", (peticion, respuesta) => {
-    const sql = "SELECT * FROM Medicamentos WHERE veces_a_tomar > 0 ";
+    const sql = "SELECT * FROM medicamentos WHERE veces_a_tomar > 0 ";
 
     conexion.query(sql, (error, resultado) => {
         if (error) {
@@ -46,7 +46,7 @@ app.get('/NombresMedicamentos', (req, respuesta) => {
     const user = req.query.user;
     console.log(user);
     const values = [user];
-    const sql = "SELECT DISTINCT mn.nombre FROM Medicamentos_nombres mn WHERE mn.nombre NOT IN ( SELECT DISTINCT m.nombre_medicamento FROM Medicamentos m WHERE m.id_user = ? );"
+    const sql = "SELECT DISTINCT mn.nombre FROM medicamentos_nombres mn WHERE mn.nombre NOT IN ( SELECT DISTINCT m.nombre_medicamento FROM medicamentos m WHERE m.id_user = ? );"
     conexion.query(sql, values, (error, resultado) => {
         if (error) {
             return respuesta.json({ Error: "ERROR AL REALIZAR LA PETICIÓN" });
@@ -72,56 +72,56 @@ app.get("/medicamentosMorning", (req, respuesta) => {
 
 app.get("/medicamentosNoon", (req, respuesta) => {
     const user = req.query.user;
-    const sql = "SELECT * FROM Medicamentos WHERE momento_dia = 'Medio dia' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
+    const sql = "SELECT * FROM medicamentos WHERE momento_dia = 'Medio dia' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
     const values = [user];
     conexion.query(sql, values, (error, resultado) => {
 
         if (error) {
-            return respuesta.json({ Error: "ERROR" });
+            return respuesta.json({ Error: "ERROR AL REALIZAR LA CONEXIÓN" });
         } else {
-            return respuesta.json({ Estatus: "Ok", medicamentos: resultado });
+            return respuesta.json({ Estatus: "PETICIÓN EXITOSA", medicamentos: resultado });
         }
     });
 });
 
 app.get("/medicamentosEvening", (req, respuesta) => {
     const user = req.query.user;
-    const sql = "SELECT * FROM Medicamentos WHERE momento_dia = 'Tarde' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
+    const sql = "SELECT * FROM medicamentos WHERE momento_dia = 'Tarde' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
     const values = [user];
     conexion.query(sql, values, (error, resultado) => {
 
         if (error) {
-            return respuesta.json({ Error: "ERROR" });
+            return respuesta.json({ Error: "ERROR AL REALIZAR LA CONEXIÓN" });
         } else {
-            return respuesta.json({ Estatus: "Ok", medicamentos: resultado });
+            return respuesta.json({ Estatus: "PETICIÓN EXITOSA", medicamentos: resultado });
         }
     });
 });
 
 app.get("/medicamentosNight", (req, respuesta) => {
     const user = req.query.user;
-    const sql = "SELECT * FROM Medicamentos WHERE momento_dia = 'Noche' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
+    const sql = "SELECT * FROM medicamentos WHERE momento_dia = 'Noche' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
     const values = [user];
     conexion.query(sql, values, (error, resultado) => {
 
         if (error) {
-            return respuesta.json({ Error: "ERROR" });
+            return respuesta.json({ Error: "ERROR AL REALIZAR LA CONEXIÓN" });
         } else {
-            return respuesta.json({ Estatus: "Ok", medicamentos: resultado });
+            return respuesta.json({ Estatus: "PETICIÓN EXITOSA", medicamentos: resultado });
         }
     });
 });
 
 app.get("/medicamentosNecessary", (req, respuesta) => {
     const user = req.query.user;
-    const sql = "SELECT * FROM Medicamentos WHERE momento_dia = 'Cuando sea necesario' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
+    const sql = "SELECT * FROM medicamentos WHERE momento_dia = 'Cuando sea necesario' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
     const values = [user];
     conexion.query(sql, values, (error, resultado) => {
 
         if (error) {
-            return respuesta.json({ Error: "ERROR" });
+            return respuesta.json({ Error: "ERROR AL REALIZAR LA CONEXIÓN" });
         } else {
-            return respuesta.json({ Estatus: "Ok", medicamentos: resultado });
+            return respuesta.json({ Estatus: "PETICIÓN EXITOSA", medicamentos: resultado });
         }
     });
 });
@@ -132,7 +132,7 @@ app.post('/api/agregar', (req, res) => {
     const user = req.query.user;
     const datos = req.body;
     const tomas = datos.Si_es_necesario ? 1 : (datos.veces_a_tomar * 24) / datos.horaVeces_a_tomar;
-    const sql = "INSERT INTO Medicamentos (nombre_medicamento, dosis, momento_dia, Si_es_necesario, veces_a_tomar, horaVeces_a_tomar, comentarios, id_user) VALUES (?,?,?,?,?,?,?,?)";
+    const sql = "INSERT INTO medicamentos (nombre_medicamento, dosis, momento_dia, Si_es_necesario, veces_a_tomar, horaVeces_a_tomar, comentarios, id_user) VALUES (?,?,?,?,?,?,?,?)";
     const values = [datos.nombre_medicamento, datos.dosis, datos.momento_dia, datos.Si_es_necesario, tomas, datos.horaVeces_a_tomar, datos.comentarios, user];
 
     conexion.query(sql, values, (error, resultados) => {
@@ -147,7 +147,7 @@ app.post('/api/agregar', (req, res) => {
 
 app.delete('/api/eliminar/:id_medicamento', (req, res) => {
     const id = req.params.id_medicamento;
-    const sql = "DELETE FROM Medicamentos WHERE id_medicamento = ?";
+    const sql = "DELETE FROM medicamentos WHERE id_medicamento = ?";
     const values = [id];
 
     conexion.query(sql, values, (error, resultados) => {
@@ -162,7 +162,7 @@ app.delete('/api/eliminar/:id_medicamento', (req, res) => {
 
 app.put('/api/hora/:id_medicamento', (req, res) => {
     const id = req.params.id_medicamento;
-    const selectSql = "SELECT horaVeces_a_tomar FROM Medicamentos WHERE id_medicamento = ?";
+    const selectSql = "SELECT horaVeces_a_tomar FROM medicamentos WHERE id_medicamento = ?";
     const selectValues = [id];
 
     conexion.query(selectSql, selectValues, (error, resultados) => {
@@ -182,7 +182,7 @@ app.put('/api/hora/:id_medicamento', (req, res) => {
                 const newTime = new Date(currentTime.getTime() + horasParaToma * 60 * 60 * 1000);
                 const horaNueva = formateador.format(newTime);
 
-                const upd = 'UPDATE Medicamentos SET hora = ? WHERE id_medicamento = ?;';
+                const upd = 'UPDATE medicamentos SET hora = ? WHERE id_medicamento = ?;';
                 const updValues = [horaNueva, id];
                 conexion.query(upd, updValues, (error, resultados) => {
                     if (error) {

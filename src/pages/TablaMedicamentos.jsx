@@ -8,9 +8,9 @@ import AddNew from "../components/AddNew";
 import TableHeader from "../components/Columns";
 import { useNavigate } from "react-router-dom";
 import { useContexto } from "../context/MainContext";
-import "./Tabla.css";
+import "./TablaMedicamentos.css";
 
-function Tabla() {
+function TablaMedicamentos() {
   const cerrarSesion = () => {
     localStorage.clear();
     setIsopen(false);
@@ -120,4 +120,4 @@ function Tabla() {
   );
 }
 
-export default Tabla;
+export default TablaMedicamentos;

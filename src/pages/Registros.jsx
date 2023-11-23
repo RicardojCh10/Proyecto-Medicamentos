@@ -67,7 +67,7 @@ function Registros() {
   }, [datos.autenticado, datos.email, datos.user]);
 
   if (datos.autenticado) {
-    navigate("/tabla");
+    navigate("/TablaMedicamentos");
     return null;
   }
 

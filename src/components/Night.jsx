@@ -48,7 +48,7 @@ function Night() {
             <h2 className="h-15">{medicamento.nombre_medicamento}</h2>
           ))
         ) : (
-          <p>CARGANDO...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
       {/*Dosis*/}
@@ -60,7 +60,7 @@ function Night() {
             </h2>
           ))
         ) : (
-          <p>CARGANDO...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
 
@@ -98,7 +98,7 @@ function Night() {
             );
           })
         ) : (
-          <p>CARGANDO...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
 
@@ -114,7 +114,7 @@ function Night() {
               </h2>
             ))
           ) : (
-            <p>CARGANDO...</p>
+            <p>CARGANDO DATOS...</p>
           )}
         </td>
       </td>
@@ -128,7 +128,7 @@ function Night() {
               </h2>
             ))
           ) : (
-            <p>CARGANDO...</p>
+            <p>CARGANDO DATOS...</p>
           )}
         </h2>
       </td>
@@ -145,7 +145,7 @@ function Night() {
             
           ))
         ) : (
-          <p>CARGANDO...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
     </>

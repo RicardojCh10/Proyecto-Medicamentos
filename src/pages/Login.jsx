@@ -62,7 +62,7 @@ function Login() {
   };
 
   if (datos.autenticado) {
-    navigate("/tabla");
+    navigate("/TablaMedicamentos");
     return null;
   }
 

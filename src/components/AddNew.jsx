@@ -120,7 +120,7 @@ function AddNew({ abierto, setAbierto }) {
                   </option>
                 ))
               ) : (
-                <p>CARGANDO...</p>
+                <p>CARGANDO DATOS...</p>
               )}
             </select>
           </div>

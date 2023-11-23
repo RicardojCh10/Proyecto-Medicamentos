@@ -39,7 +39,7 @@ function Necessary() {
             <h2 key={medicamento.id}>{medicamento.nombre_medicamento}</h2>
           ))
         ) : (
-          <p>Loading...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
       {/*Dosis*/}
@@ -49,7 +49,7 @@ function Necessary() {
             <h2 key={medicamento.id_medicamento}>{medicamento.dosis}</h2>
           ))
         ) : (
-          <p>Loading...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
       {/*Tiempo - hora programada*/}
@@ -57,10 +57,10 @@ function Necessary() {
         <td className="bg-[#c9fbeb]  w-40 h-fit text-center">
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
-              <h2 key={medicamento.id_medicamento}>Cuando se necesite </h2>
+              <h2 key={medicamento.id_medicamento}>N/A</h2>
             ))
           ) : (
-            <p>Loading...</p>
+            <p>CARGANDO DATOS...</p>
           )}
         </td>
       </td>
@@ -69,10 +69,10 @@ function Necessary() {
         <td className="bg-[#98cfba]  w-40 h-fit ">
           {medicamentos ? (
             medicamentos.map((medicamento, index) => (
-              <h2 key={medicamento.id_medicamento}>Si lo necesito </h2>
+              <h2 key={medicamento.id_medicamento}>SI ES NECESARIO</h2>
             ))
           ) : (
-            <p>Loading...</p>
+            <p>CARGANDO DATOS...</p>
           )}
         </td>
       </td>
@@ -84,7 +84,7 @@ function Necessary() {
               <h2 key={medicamento.id_medicamento}>{medicamento.comentarios}</h2>
             ))
           ) : (
-            <p>Loading...</p>
+            <p>CARGANDO DATOS...</p>
           )}
         </h2>
       </td>
@@ -99,7 +99,7 @@ function Necessary() {
             </button>
           ))
         ) : (
-          <p>Loading...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
     </>

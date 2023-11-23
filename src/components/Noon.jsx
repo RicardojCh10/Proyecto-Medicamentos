@@ -50,7 +50,7 @@ function Noon() {
             </h2>
           ))
         ) : (
-          <p>CARGANDO...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
       {/*Dosis*/}
@@ -60,7 +60,7 @@ function Noon() {
             <h2 key={index}>{medicamento.dosis}</h2>
           ))
         ) : (
-          <p>CARGANDO...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
 
@@ -98,7 +98,7 @@ function Noon() {
             );
           })
         ) : (
-          <p>CARGANDO...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
 
@@ -111,7 +111,7 @@ function Noon() {
               <h2 key={index}>{medicamento.fecha}</h2>
             ))
           ) : (
-            <p>CARGANDO...</p>
+            <p>CARGANDO DATOS...</p>
           )}
         </td>
       </td>
@@ -125,7 +125,7 @@ function Noon() {
               </h2>
             ))
           ) : (
-            <p>CARGANDO...</p>
+            <p>CARGANDO DATOS...</p>
           )}
         </h2>
       </td>
@@ -140,7 +140,7 @@ function Noon() {
             </button>
           ))
         ) : (
-          <p>Loading...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
     </>

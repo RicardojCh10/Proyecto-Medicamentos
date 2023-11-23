@@ -48,7 +48,7 @@ function Evening() {
             <h2>{medicamento.nombre_medicamento}</h2>
           ))
         ) : (
-          <p>CARGANDO...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
 
@@ -59,7 +59,7 @@ function Evening() {
             <h2 key={index}>{medicamento.dosis}</h2>
           ))
         ) : (
-          <p>CARGANDO...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
 
@@ -97,7 +97,7 @@ function Evening() {
             );
           })
         ) : (
-          <p>CARGANDO...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
 
@@ -111,7 +111,7 @@ function Evening() {
               <h2 key={index}>{medicamento.fecha}</h2>
             ))
           ) : (
-            <p>CARGANDO...</p>
+            <p>CARGANDO DATOS...</p>
           )}
         </td>
       </td>
@@ -125,7 +125,7 @@ function Evening() {
               </h2>
             ))
           ) : (
-            <p>CARGANDO...</p>
+            <p>CARGANDO DATOS...</p>
           )}
         </h2>
       </td>
@@ -140,7 +140,7 @@ function Evening() {
             </button>
           ))
         ) : (
-          <p>CARGANDO...</p>
+          <p>CARGANDO DATOS...</p>
         )}
       </td>
     </>
