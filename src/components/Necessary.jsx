@@ -36,7 +36,7 @@ function Necessary() {
       <td className="bg-[#c9fbeb]  w-40 h-fit  border-r-2 ">
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
-            <h2 key={medicamento.id}>{medicamento.nombre_medicamento}</h2>
+            <h2 key={medicamento.id_medicamento}>{medicamento.nombre_medicamento}</h2>
           ))
         ) : (
           <p>CARGANDO DATOS...</p>
