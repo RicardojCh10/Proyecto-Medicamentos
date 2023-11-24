@@ -19,7 +19,7 @@ function Noon() {
         );
         setMedicamentos(response.data.medicamentos);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("ERROR AL REALIZAR PETICIÓN", error);
       }
     };
     fetchData(); // fetch inicial

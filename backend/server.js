@@ -30,14 +30,48 @@ app.listen(8082, () => {
 app.use(cors())
 
 
-app.get("/medicamentos", (peticion, respuesta) => {
-    const sql = "SELECT * FROM medicamentos WHERE veces_a_tomar > 0 ";
+app.post('/login', (req, res) => {
+    const datos = req.body
 
-    conexion.query(sql, (error, resultado) => {
+    const sql = 'SELECT * FROM users WHERE email = ?'
+    const values = [datos.email]
+
+    conexion.query(sql, values, (error, resultados) => {
         if (error) {
-            return respuesta.json({ Error: "ERROR AL REALIZAR LA PETICIÓN" });
+            console.log(error);
+            return res.status(500).json({ message: 'ERROR EN LA BASE DE DATOS' });
+        } else if (resultados.length === 0 || resultados[0].contrasena !== datos.contrasena) {
+            return res.status(401).json({ message: 'CREDENCIALES INCORRECTAS' });
+
+        } else if (resultados[0].contrasena == datos.contrasena)
+            res.json(resultados);
+        console.log('CONCLUIDO')
+    })
+});
+
+app.post('/registro', (req, res) => {
+    const datos = req.body;
+
+    const insertSQL = 'INSERT INTO users (email, nombre, contrasena) VALUES (?,?,?)';
+    const selectSQL = 'SELECT * FROM users WHERE id_user = LAST_INSERT_ID()'; // Assuming 'id_user' is the auto-increment primary key
+
+    const values = [datos.email, datos.nombre, datos.contrasena];
+
+    conexion.query(insertSQL, values, (error, resultados) => {
+        if (error) {
+            console.error('ERROR AL CREAR USUARIO: ' + error.message);
+            res.status(500).json({ error: 'ERROR AL CREAR USUARIO:' });
         } else {
-            return respuesta.json({ Estatus: "PETICIÓN EXITOSA", medicamentos: resultado });
+            // After inserting the user, retrieve the newly inserted user's information
+            conexion.query(selectSQL, (selectError, selectResult) => {
+                if (selectError) {
+                    console.error('ERROR AL REPCUPERAR USUARIO: ' + selectError.message);
+                    res.status(500).json({ error: 'ERROR AL REPCUPERAR USUARIO:' });
+                } else {
+                    // Assuming selectResult contains the user information
+                    res.json(selectResult);
+                }
+            });
         }
     });
 });
@@ -114,7 +148,7 @@ app.get("/medicamentosNight", (req, respuesta) => {
 
 app.get("/medicamentosNecessary", (req, respuesta) => {
     const user = req.query.user;
-    const sql = "SELECT * FROM medicamentos WHERE momento_dia = 'Cuando sea necesario' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
+    const sql = "SELECT * FROM medicamentos WHERE momento_dia = 'SiNecesario' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
     const values = [user];
     conexion.query(sql, values, (error, resultado) => {
 
@@ -187,7 +221,7 @@ app.put('/api/hora/:id_medicamento', (req, res) => {
                 conexion.query(upd, updValues, (error, resultados) => {
                     if (error) {
                         console.log(error);
-                        return res.status(500).json({ message: 'Error de la bd' });
+                        return res.status(500).json({ message: 'ERROR EN LA BASE DE DATOS' });
                     }
                     res.json(resultados);
                 });
@@ -198,52 +232,3 @@ app.put('/api/hora/:id_medicamento', (req, res) => {
         }
     });
 });
-
-
-
-app.post('/login', (req, res) => {
-    const datos = req.body
-
-    const sql = 'SELECT * FROM users WHERE email = ?'
-    const values = [datos.email]
-
-    conexion.query(sql, values, (error, resultados) => {
-        if (error) {
-            console.log(error);
-            return res.status(500).json({ message: 'ERROR EN LA BASE DE DATOS' });
-        } else if (resultados.length === 0 || resultados[0].contrasena !== datos.contrasena) {
-            return res.status(401).json({ message: 'CREDENCIALES INCORRECTAS' });
-
-        } else if (resultados[0].contrasena == datos.contrasena)
-            res.json(resultados);
-        console.log('CONCLUIDO')
-    })
-});
-
-app.post('/registro', (req, res) => {
-    const datos = req.body;
-
-    const insertSQL = 'INSERT INTO users (email, nombre, contrasena) VALUES (?,?,?)';
-    const selectSQL = 'SELECT * FROM users WHERE id_user = LAST_INSERT_ID()'; // Assuming 'id_user' is the auto-increment primary key
-
-    const values = [datos.email, datos.nombre, datos.contrasena];
-
-    conexion.query(insertSQL, values, (error, resultados) => {
-        if (error) {
-            console.error('ERROR AL CREAR USUARIO: ' + error.message);
-            res.status(500).json({ error: 'ERROR AL CREAR USUARIO:' });
-        } else {
-            // After inserting the user, retrieve the newly inserted user's information
-            conexion.query(selectSQL, (selectError, selectResult) => {
-                if (selectError) {
-                    console.error('ERROR AL REPCUPERAR USUARIO: ' + selectError.message);
-                    res.status(500).json({ error: 'ERROR AL REPCUPERAR USUARIO:' });
-                } else {
-                    // Assuming selectResult contains the user information
-                    res.json(selectResult);
-                }
-            });
-        }
-    });
-});
-

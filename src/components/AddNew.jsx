@@ -82,7 +82,7 @@ function AddNew({ abierto, setAbierto }) {
         setTriggerEffect((prev) => !prev);
       })
       .catch((error) => {
-        setResultado("Error al enviar el formulario");
+        setResultado("ERROR AL ENVIAR DATOS");
       });
   };
 

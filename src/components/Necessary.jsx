@@ -19,7 +19,7 @@ function Necessary() {
         );
         setMedicamentos(response.data.medicamentos);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("ERROR AL REALIZAR PETICIÓN", error);
       }
     };
     fetchData();
@@ -92,11 +92,12 @@ function Necessary() {
         {medicamentos ? (
           medicamentos.map((medicamento, index) => (
             <button
-              className="w-full"
-              onClick={() => handleDelete(medicamento.id_medicamento)}
-            >
-              x
-            </button>
+            className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            onClick={() => handleDelete(medicamento.id_medicamento)}
+          >
+            TERMINADO
+            
+          </button>
           ))
         ) : (
           <p>CARGANDO DATOS...</p>

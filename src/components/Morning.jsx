@@ -19,7 +19,7 @@ function Morning() {
         );
         setMedicamentos(response.data.medicamentos);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("ERROR AL REALIZAR PETICIÓN", error);
       }
     };
 
@@ -81,9 +81,10 @@ function Morning() {
               `${currentYear}-${currentMonth}-${currentDay} ${medicamento.hora}`
             );
 
-            // Check if the current time is greater than the scheduled time
             const showButton = currentTime > horaProgramada; //se muestra el boton si ahpra es mayor que la hora programada
 
+
+            //SOLO APARECERA EL BÓTON SI SE CUMPLE QUE LA HORA SEA MAYOR A LO ESTABLECIDO
             return (
               <h2 key={index} className="h-15">
                 {medicamento.hora}
