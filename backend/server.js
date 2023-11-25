@@ -1,12 +1,16 @@
-import express from 'express'
-import mysql from 'mysql'
-import cors from 'cors'
-import bodyParser from 'body-parser';
+// Importación de las librerías y módulos necesarios
+import express from 'express'; // Importa Express, un marco de aplicación web para Node.js
+import mysql from 'mysql'; // Importa MySQL, un sistema de gestión de bases de datos relacional
+import cors from 'cors'; // Importa CORS, un paquete que proporciona un middleware Connect/Express para habilitar CORS con varias opciones
+import bodyParser from 'body-parser'; // Importa body-parser, un middleware que analiza el cuerpo de las solicitudes entrantes en un middleware y expone el objeto `req.body`
 
-const app = express();  // Crea la instancia de Express
+const app = express(); // Inicializa la aplicación Express
 
-app.use(bodyParser.json());
+app.use(cors()); // Usa CORS como middleware para habilitar solicitudes entre dominios diferentes
 
+app.use(bodyParser.json());  // Usa body-parser para analizar el cuerpo de las solicitudes entrantes con formato JSON
+
+// Configuración de la conexión a la base de datos MySQL Y ALWAYSDATA
 const conexion = mysql.createConnection({
     host: 'mysql-ricardojchi.alwaysdata.net',
     user: '336854',
@@ -14,6 +18,7 @@ const conexion = mysql.createConnection({
     database: 'ricardojchi_medicamentosbd'
 });
 
+// Conexión a la base de datos
 conexion.connect((error) => {
     if (error) {
         console.log("ERROR DE CONEXIÓN", error)
@@ -22,14 +27,12 @@ conexion.connect((error) => {
     }
 });
 
+// Configuración del servidor para escuchar en el puerto 8082
 app.listen(8082, () => {
     console.log('ESCUCHANDO EN EL PUERTO 8082');
 });
 
-
-app.use(cors())
-
-
+// Manejo de la solicitud POST para la autenticación de usuarios
 app.post('/login', (req, res) => {
     const datos = req.body
 
@@ -49,11 +52,12 @@ app.post('/login', (req, res) => {
     })
 });
 
+// Manejo de la solicitud POST para el registro de nuevos usuarios
 app.post('/registro', (req, res) => {
     const datos = req.body;
 
     const insertSQL = 'INSERT INTO users (email, nombre, contrasena) VALUES (?,?,?)';
-    const selectSQL = 'SELECT * FROM users WHERE id_user = LAST_INSERT_ID()'; // Assuming 'id_user' is the auto-increment primary key
+    const selectSQL = 'SELECT * FROM users WHERE id_user = LAST_INSERT_ID()';
 
     const values = [datos.email, datos.nombre, datos.contrasena];
 
@@ -62,13 +66,11 @@ app.post('/registro', (req, res) => {
             console.error('ERROR AL CREAR USUARIO: ' + error.message);
             res.status(500).json({ error: 'ERROR AL CREAR USUARIO:' });
         } else {
-            // After inserting the user, retrieve the newly inserted user's information
             conexion.query(selectSQL, (selectError, selectResult) => {
                 if (selectError) {
                     console.error('ERROR AL REPCUPERAR USUARIO: ' + selectError.message);
                     res.status(500).json({ error: 'ERROR AL REPCUPERAR USUARIO:' });
                 } else {
-                    // Assuming selectResult contains the user information
                     res.json(selectResult);
                 }
             });
@@ -76,6 +78,7 @@ app.post('/registro', (req, res) => {
     });
 });
 
+// Manejo de solicitudes GET para obtener nombres de medicamentos
 app.get('/NombresMedicamentos', (req, respuesta) => {
     const user = req.query.user;
     console.log(user);
@@ -90,6 +93,7 @@ app.get('/NombresMedicamentos', (req, respuesta) => {
     });
 });
 
+// Manejo de la solicitud GET para obtener medicamentos en la tabla Morning asociados a un usuario específico
 app.get("/medicamentosMorning", (req, respuesta) => {
     const user = req.query.user;
     const sql = "SELECT * FROM medicamentos WHERE momento_dia = 'Mañana' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;"
@@ -104,6 +108,7 @@ app.get("/medicamentosMorning", (req, respuesta) => {
     });
 });
 
+// Manejo de la solicitud GET para obtener medicamentos en la tabla Noon asociados a un usuario específico
 app.get("/medicamentosNoon", (req, respuesta) => {
     const user = req.query.user;
     const sql = "SELECT * FROM medicamentos WHERE momento_dia = 'Medio dia' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
@@ -118,6 +123,7 @@ app.get("/medicamentosNoon", (req, respuesta) => {
     });
 });
 
+// Manejo de la solicitud GET para obtener medicamentos en la tabla Evening asociados a un usuario específico
 app.get("/medicamentosEvening", (req, respuesta) => {
     const user = req.query.user;
     const sql = "SELECT * FROM medicamentos WHERE momento_dia = 'Tarde' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
@@ -132,6 +138,7 @@ app.get("/medicamentosEvening", (req, respuesta) => {
     });
 });
 
+// Manejo de la solicitud GET para obtener medicamentos en la tabla Night asociados a un usuario específico
 app.get("/medicamentosNight", (req, respuesta) => {
     const user = req.query.user;
     const sql = "SELECT * FROM medicamentos WHERE momento_dia = 'Noche' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
@@ -146,6 +153,7 @@ app.get("/medicamentosNight", (req, respuesta) => {
     });
 });
 
+// Manejo de la solicitud GET para obtener medicamentos en la tabla Necessary asociados a un usuario específico
 app.get("/medicamentosNecessary", (req, respuesta) => {
     const user = req.query.user;
     const sql = "SELECT * FROM medicamentos WHERE momento_dia = 'SiNecesario' AND veces_a_tomar > 0 AND id_user = ? ORDER BY hora;";
@@ -160,7 +168,7 @@ app.get("/medicamentosNecessary", (req, respuesta) => {
     });
 });
 
-
+// Manejo de solicitudes POST para agregar un nuevo medicamento
 app.post('/api/agregar', (req, res) => {
 
     const user = req.query.user;
@@ -178,7 +186,7 @@ app.post('/api/agregar', (req, res) => {
     });
 });
 
-
+// Manejo de solicitudes DELETE para eliminar un medicamento
 app.delete('/api/eliminar/:id_medicamento', (req, res) => {
     const id = req.params.id_medicamento;
     const sql = "DELETE FROM medicamentos WHERE id_medicamento = ?";
@@ -193,7 +201,7 @@ app.delete('/api/eliminar/:id_medicamento', (req, res) => {
     });
 });
 
-
+// Manejo de solicitudes PUT para actualizar la hora de un medicamento
 app.put('/api/hora/:id_medicamento', (req, res) => {
     const id = req.params.id_medicamento;
     const selectSql = "SELECT horaVeces_a_tomar FROM medicamentos WHERE id_medicamento = ?";

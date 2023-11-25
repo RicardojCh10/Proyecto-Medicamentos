@@ -30,7 +30,11 @@ function Login() {
       .post("http://localhost:8082/login", datos)
       .then((respuesta) => {
         if (respuesta.status === 200) {
-          setDatos({ ...datos, autenticado: true, user: respuesta.data[0].id_user });
+          setDatos({
+            ...datos,
+            autenticado: true,
+            user: respuesta.data[0].id_user,
+          });
         } else {
           setError("Credenciales incorrectas, inténtalo de nuevo");
         }
@@ -70,7 +74,9 @@ function Login() {
     <div className="login-background">
       <div className="login-container">
         <form onSubmit={handleLogin}>
-          <h2 className="mb-4 text-2xl font-bold">Iniciar sesión para usuarios existentes</h2>
+          <h2 className="mb-4 text-2xl font-bold">
+            Iniciar sesión para usuarios existentes
+          </h2>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
               EMAIL:
@@ -120,9 +126,7 @@ function Login() {
             INICIAR SESIÓN
           </button>
           {error && <div className="alert alert-danger mt-3">{error}</div>}
-          <div className="mt-3 text-center my-3">
-            CREAR UNA NUEVA CUENTA
-          </div>
+          <div className="mt-3 text-center my-3">CREAR UNA NUEVA CUENTA</div>
           <div className="btn-registrarse-container">
             <Link to="/registro" className="btn btn-registrarse">
               REGÍSTRATE

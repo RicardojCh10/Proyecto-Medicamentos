@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import Registros from "./pages/Registros";
 import TablaMedicamentos from "./pages/TablaMedicamentos";
 import "./index.css";
-import { ContextoContextProvider } from "./context/MainContext";
+import { ContextoContextProvider } from "./Hook/MedicationContext";
 
 const router = createBrowserRouter([
   {
@@ -18,8 +18,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/TablaMedicamentos",
-    element: <TablaMedicamentos/>,
-  }
+    element: <TablaMedicamentos />,
+  },
 ]);
 
 function App() {

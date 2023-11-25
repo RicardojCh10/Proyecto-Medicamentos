@@ -40,7 +40,11 @@ function Registros() {
       .then((respuesta) => {
         if (respuesta.status === 200) {
           console.log(respuesta.data[0].id_user);
-          setDatos({ ...datos, autenticado: true, user: respuesta.data[0].id_user });
+          setDatos({
+            ...datos,
+            autenticado: true,
+            user: respuesta.data[0].id_user,
+          });
         } else {
           setError("Credenciales incorrectas, inténtalo de nuevo");
         }
@@ -73,61 +77,61 @@ function Registros() {
 
   return (
     <div className="registro-background">
-    <div className="registro-container">
-      <form onSubmit={handleRegister}>
-        <h2 className="mb-4 text-2xl font-bold">Registrarse</h2>
-        <div>
-          <label>NOMBRE:</label>
-          <input
-            type="text"
-            placeholder="Ingresa tu Nombre"
-            value={datos.nombre}
-            onChange={(e) => {
-              setDatos({ ...datos, nombre: e.target.value });
-            }}
-          />
-        </div>
+      <div className="registro-container">
+        <form onSubmit={handleRegister}>
+          <h2 className="mb-4 text-2xl font-bold">Registrarse</h2>
+          <div>
+            <label>NOMBRE:</label>
+            <input
+              type="text"
+              placeholder="Ingresa tu Nombre"
+              value={datos.nombre}
+              onChange={(e) => {
+                setDatos({ ...datos, nombre: e.target.value });
+              }}
+            />
+          </div>
 
-        <div>
-          <label>CONTRASEÑA:</label>
-          <input
-            type="password"
-            placeholder="Ingresa tu Contraseña"
-            value={datos.contrasena}
-            onChange={(e) => {
-              setDatos({ ...datos, contrasena: e.target.value });
-            }}
-          />
-        </div>
+          <div>
+            <label>CONTRASEÑA:</label>
+            <input
+              type="password"
+              placeholder="Ingresa tu Contraseña"
+              value={datos.contrasena}
+              onChange={(e) => {
+                setDatos({ ...datos, contrasena: e.target.value });
+              }}
+            />
+          </div>
 
-        <div>
-          <label>CONFIRMAR CONTRASEÑA:</label>
-          <input
-            type="password"
-            placeholder="Confirma tu Contraseña"
-            value={datos.contrasenaConfirm}
-            onChange={(e) => {
-              setDatos({ ...datos, contrasenaConfirm: e.target.value });
-            }}
-          />
-        </div>
+          <div>
+            <label>CONFIRMAR CONTRASEÑA:</label>
+            <input
+              type="password"
+              placeholder="Confirma tu Contraseña"
+              value={datos.contrasenaConfirm}
+              onChange={(e) => {
+                setDatos({ ...datos, contrasenaConfirm: e.target.value });
+              }}
+            />
+          </div>
 
-        <div>
-          <label>EMAIL:</label>
-          <input
-            type="email"
-            placeholder="medicamentos@gmail.com"
-            value={datos.email}
-            onChange={(e) => {
-              setDatos({ ...datos, email: e.target.value });
-            }}
-          />
-        </div>
+          <div>
+            <label>EMAIL:</label>
+            <input
+              type="email"
+              placeholder="medicamentos@gmail.com"
+              value={datos.email}
+              onChange={(e) => {
+                setDatos({ ...datos, email: e.target.value });
+              }}
+            />
+          </div>
 
-        <button type="submit">CREAR CUENTA</button>
-        {error && <div className="error">{error}</div>}
-      </form>
-    </div>
+          <button type="submit">CREAR CUENTA</button>
+          {error && <div className="error">{error}</div>}
+        </form>
+      </div>
     </div>
   );
 }

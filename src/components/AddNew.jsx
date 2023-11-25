@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import { useContexto } from "../context/MainContext";
+import { useContexto } from "../Hook/MedicationContext";
 
 function AddNew({ abierto, setAbierto }) {
   const estadoInicial = {
